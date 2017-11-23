@@ -17,7 +17,7 @@
 
 \def\name{Connor Boyle} %your name goes here
 \def\CM{2239} %your cm goes here
-\def\hwnum{\#} %homework number goes here
+\def\hwnum{1} %homework number goes here
 
 %these packages create the footer and page numbering
 
@@ -49,9 +49,37 @@
 \noindent \hrulefill
 
 \begin{enumerate}[1.]
-\item \emph{The problem statement of problem 1 goes here.}
-\begin{proof}
-Your proof goes here.
+\item \emph{Prove that for any integer $m, m$ is even if and only if $m^2$ is even.}
+\begin{proof} .\\
+%----------------------------------------------------------- 
+
+First we must show that if $m$ is even then $m^2$ is even.
+Assume $m$ is even. Then by definition of even, 
+\[\exists n\in\mathbb{N} \text{ such that } m = 2n, \]
+Now consider $m^2$:
+\begin{align*} 
+    m^2 &= (2n)^2 \\
+    &= 4n^2
+\end{align*}
+Let $2n^2 = q$. Since $n\in\mathbb{N}$, then $q\in\mathbb{N}$. 
+Then $m^2 = 2q, q\in\mathbb{N}$. Therefore, $m^2$ is even. \\
+%-----------------------------------------------------------
+
+Second we must show that if $m^2$ is even then $m$ is even.
+Let's show that the contrapositive is true.
+So we must show that if $m$ is odd, then $m^2$ is odd.
+Assume $m$ is odd. Then by definition of odd, 
+\[\exists r\in\mathbb{N} \text{ such that } m = 2r - 1, \]
+Now consider $m^2$:
+\begin{align*}
+    m^2 &= (2r - 1)^2 \\
+    &= 4r^2 - 4r + 1 \\
+    &= 4r^2 - 4r + 2 - 2 + 1 \\
+    &= 2(2r^2 -2r + 1) - 1
+\end{align*}
+Let $2r^2 - 2r + 1 = p$. Since $r\in\mathbb{N}$, then $p\in\mathbb{N}$.
+Then $m^2 = 2p - 1, p\in\mathbb{N}$. Therefore, $m^2$ is odd. \\
+%-----------------------------------------------------------
 \end{proof}
 
 \newpage
