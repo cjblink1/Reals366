@@ -1,4 +1,5 @@
 \documentclass{amsart}
+\usepackage{amssymb}
 \usepackage{enumerate}
 \usepackage[headheight=12pt,textwidth=7in,top=1in, bottom=1in]{geometry}
 
@@ -124,6 +125,35 @@ a positive rational number $\frac{b}{c}$ we can find another positive
 rational number $\frac{b}{d}$ such that $\frac{b}{d}<\frac{b}{c}$.
 Therefore $\mathbb{Q}^+$ does not have a smallest element.
 
+\end{proof}
+
+\newpage
+
+\item \emph{The problem statement of problem 5 goes here.}
+\begin{proof}
+Your proof goes here.
+\end{proof}
+
+\newpage
+
+
+\item .\\
+(i)\emph{ $\exists x\in\mathbb{R}$ such that $\forall z\in\mathbb{R}$, $x < z$ is false.}
+\begin{proof}
+Assume that such an $x$ exists. Now consider a $z\in\mathbb{R}$
+such that $z = x$. In this case, $x \nless z$ because $ x \nless x$. Therefore there is no such $x$.
+\end{proof}
+.\\
+(ii)\emph{ $\forall x\in\mathbb{R}$, $\exists y,z \in\mathbb{R}$ such that $y < z$ and $y+z = x$ is true.}
+\begin{proof}
+Consider an arbitrary $x\in\mathbb{R}$. Then let
+\begin{align*}
+    y &= \frac{x-1}{2}  \text{ and}\\
+    z &= \frac{x+1}{2}
+\end{align*}
+Since we have determined a particular set of values for 
+$y$ and $z$ such that $y < z$ and $y+z = x$, we have shown 
+the theorem to be true.
 \end{proof}
 
 \end{enumerate}
