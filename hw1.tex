@@ -89,5 +89,42 @@ Then $m^2 = 2p - 1, p\in\mathbb{N}$. Therefore, $m^2$ is odd. \\
 Your proof goes here.
 \end{proof}
 
+
+\newpage
+
+\item \emph{The problem statement of problem 3 goes here.}
+\begin{proof}
+Your proof goes here.
+\end{proof}
+
+
+\newpage
+
+\item \emph{Prove that the set of positive rational numbers $\mathbb{Q}^+$ does not have a smallest element.}
+\begin{proof} .\\
+
+First let's define an order on $\mathbb{Q}^+$:
+For $q_1, q_2\in\mathbb{Q}^+$ and $q_1=\frac{w}{x}$, 
+$q_2=\frac{y}{z}$. Define $q_1 < q_2$ to mean $w\cdot z < x\cdot y$. \\
+
+Now, take any positive rational number $\frac{b}{c}$ 
+where $b,c\in\mathbb{Z}^+$. Now consider $\frac{b}{d}$ where $d=c+1$. 
+Since $c\in\mathbb{Z}^+$, then $d\in\mathbb{Z}^+$. And since 
+$b,d\in\mathbb{Z}^+$ then $\frac{b}{d}\in\mathbb{Q}^+$. \\
+
+We know that $c < c+1$. Since $b > 0$ 
+\begin{align*}
+    b\cdot c &< b\cdot(c+1) \\
+    &< b\cdot d
+\end{align*}
+Therefore $\frac{b}{d}<\frac{b}{c}$. \\
+
+By this method, if we are given
+a positive rational number $\frac{b}{c}$ we can find another positive
+rational number $\frac{b}{d}$ such that $\frac{b}{d}<\frac{b}{c}$.
+Therefore $\mathbb{Q}^+$ does not have a smallest element.
+
+\end{proof}
+
 \end{enumerate}
 \end{document} 
