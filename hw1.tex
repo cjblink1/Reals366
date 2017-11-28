@@ -108,9 +108,11 @@ $q$ is irrational! Therefore $p + q$ must be irrational.
 
 \newpage
 
-\item \emph{The problem statement of problem 3 goes here.}
+\item \emph{The statement "for any real numbers p and q, if p and q are irrational, then p + q is irrational" is false.}
 \begin{proof}
-Your proof goes here.
+Consider $p = \sqrt{2}$ and $q = -\sqrt{2}$. In this case, p and q are 
+both irrational, but $p + q = 0$, which is rational.
+
 \end{proof}
 
 
@@ -144,9 +146,34 @@ Therefore $\mathbb{Q}^+$ does not have a smallest element.
 
 \newpage
 
-\item \emph{The problem statement of problem 5 goes here.}
+\item \emph{Prove that two real numbers $a$ and $b$ are equal if and 
+only if $|a - b| <\epsilon$ for all $\epsilon> 0$.}
 \begin{proof}
-Your proof goes here.
+%-----------------------------------------------------------
+First we must show that if $a$ and $b$ are equal then $|a - b| <\epsilon$ 
+for all $\epsilon> 0$. \\
+
+Assume $a$ and $b$ are equal. Then,
+\begin{align*}
+    a &= b \\
+    a + (-b) &= b + (-b) \\
+    a - b &= 0 \text{ by the additive inverse. } \\
+    |a - b| &= 0
+\end{align*}
+Hence $|a - b| < \epsilon$ for all $\epsilon > 0$. \\
+%----------------------------------------------------------- 
+
+Second, we must show that if $|a - b| < \epsilon$ for all $\epsilon > 0$
+then $a$ and $b$ are equal. \\
+
+Assume, for contradiction that $|a - b| < \epsilon$ for all $\epsilon > 0$
+and $a$ and $b$ are not equal. Then
+\begin{align*}
+    a &= b + c \text{ where } c\in\mathbb{R}. \\
+    a - b &= c \\
+    |a - b| &= |c| \\
+    |a - b|
+\end{align*}
 \end{proof}
 
 \newpage
