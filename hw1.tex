@@ -85,9 +85,24 @@ Then $m^2 = 2p - 1, p\in\mathbb{N}$. Therefore, $m^2$ is odd. \\
 
 \newpage
 
-\item \emph{The problem statement of problem 2 goes here.}
+\item \emph{For any real numbers $p$ and $q$, if $p$ is rational and 
+$q$ is irrational, then $p + q$ is irrational.}
 \begin{proof}
-Your proof goes here.
+First, we know that $\mathbb{Q}$ is closed under addition. We also know
+that $\mathbb{Q}$ is closed under additive inverse. From these axioms, we
+can see that $\mathbb{Q}$ is closed under differences. \\
+
+For contradiction, assume $p$ is rational, $q$ is irrational, 
+$p + q = r$, and $r$ is rational. We see that
+\begin{align*}
+    p + q &= r \\
+    (-p) + p + q &= (-p) + r \\
+    q &= (-p) + r \\
+    q &= r - p
+\end{align*}
+$r - p$ must be rational, since $\mathbb{Q}$ is closed under differences.
+Therefore $q$ must be rational. But this contradicts our assumption that
+$q$ is irrational! Therefore $p + q$ must be irrational.
 \end{proof}
 
 
@@ -163,7 +178,7 @@ the theorem to be true.
 Assume $A\subseteq B$ and $B\subseteq C$. Then,
 \begin{align*}
     &\text{(1) }\forall x\in A, x\in B \text{ and }\\
-    &\text{(1) }\forall y\in B, y\in C
+    &\text{(2) }\forall y\in B, y\in C
 \end{align*}
 So choose any $z\in A$. Then $z\in B$ by (1). Since $z\in B$, then
 $z\in C$ by (2). By universal generalization, $\forall z\in A$,
