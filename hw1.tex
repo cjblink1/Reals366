@@ -100,11 +100,11 @@ $p + q = r$, and $r$ is rational. We see that
     q &= (-p) + r \\
     q &= r - p
 \end{align*}
-$r - p$ must be rational, since $\mathbb{Q}$ is closed under differences.
-Therefore $q$ must be rational. But this contradicts our assumption that
+$r - p$ must be rational, since $r\in\mathbb{Q}$, $p\in\mathbb{Q}$, and
+$\mathbb{Q}$ is closed under differences. Therefore $q$ must be 
+rational. But this contradicts our assumption that
 $q$ is irrational! Therefore $p + q$ must be irrational.
 \end{proof}
-
 
 \newpage
 
@@ -177,8 +177,8 @@ and $a$ and $b$ are not equal. Then
     a + (-b) &= 0 + c &\text{ by additive inverse. } \\
     a - b &= c &\text{ by additive identity. } \\
     |a - b| &= |c| \\
-    |a - b| &= d \text{ where $d\in\mathbb{R^+}$ by definition
-    of absolute value (and the fact that $c\neq 0$).}
+    |a - b| &= d \text{ where $d\in\mathbb{R^+}$} &\text{ by definition
+    of absolute value. }
 \end{align*}
 Now consider $\epsilon = d/2$. We know that $\epsilon > 0$ because 
 $d\in\mathbb{R^+}$ and $\mathbb{R^+}$ is closed under division.
@@ -195,14 +195,14 @@ This is a contradiction! Therefore $a$ and $b$ must be equal.
 
 
 \item .\\
-(i)\emph{ $\exists x\in\mathbb{R}$ such that $\forall z\in\mathbb{R}$, $x < z$ is false.}
+(i)\emph{ The statement "$\exists x\in\mathbb{R}$ such that $\forall z\in\mathbb{R}$, $x < z$" is false.}
 \begin{proof}
 Assume that such an $x$ exists. Now consider a $z\in\mathbb{R}$
 such that $z = x$. In this case, $x \nless z$ because $ x \nless x$. 
 Therefore there is no such $x$.
 \end{proof}
 .\\
-(ii)\emph{ $\forall x\in\mathbb{R}$, $\exists y,z \in\mathbb{R}$ such that $y < z$ and $y+z = x$ is true.}
+(ii)\emph{ The statement "$\forall x\in\mathbb{R}$, $\exists y,z \in\mathbb{R}$ such that $y < z$ and $y+z = x$" is true.}
 \begin{proof}
 Consider an arbitrary $x\in\mathbb{R}$. Then let
 \begin{align*}
@@ -234,7 +234,7 @@ $z\in C$. Therefore $A\subseteq C$.
 $f:\mathbb{Q}\to \mathbb{Q}$ denoted by $f(\frac{a}{b})=\frac{1}{b}$.} \\\\
 For $\frac{a}{b}, \frac{b}{c}\in \mathbb{Q}$, define:
 \[
-    \frac{a}{b} = \frac{c}{d} \text{ to mean } a\cdot d = b\cdot d.
+    \frac{a}{b} = \frac{c}{d} \text{ to mean } a\cdot d = b\cdot c.
 \] 
 If $f$ is a function, it must send every element in its domain to
 \underbar{exactly one} element in its codomain. In other words, if
@@ -242,9 +242,9 @@ $x=y$, then $f(x)=f(y)$.\\\\
 
 Now consider
 \[
-    m := \frac{1}{2} \text{ and } n := \frac{2}{4}    
+    m = \frac{1}{2} \text{ and } n = \frac{2}{4}    
 \]
-$m, n\in\mathbb{Q}$ and since $1\cdot 4 = 2\cdot 2$, $m=n$. According
+Since $m, n\in\mathbb{Q}$ and $1\cdot 4 = 2\cdot 2$ = 4, $m=n$. According
 to the definition of $f$,
 \[
     f\left(\frac{1}{2}\right) = \frac{1}{2} \text{, and }
