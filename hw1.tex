@@ -276,8 +276,30 @@ case 2: Assume $f(x) = f(y) \neq 0$. By the definition of $f$,
     y  &= x \\
     x &= y. 
 \end{align*}
+In both cases, if we assume that $f(x) = f(y)$, we see that $x = y$.
+Therefore $f$ is injective. \\
+%----------------------------------------------------------- 
 
-Now let's show that $f$ is surjective.
+Now let's show that $f$ is surjective. \\
+Note: $f$ is surjective if $\forall b\in [0, +\infty)$, 
+$\exists a\in [0,1)$ such that $f(a) = b$. \\
+
+case 1: Let $b = 0$. \\
+    From the definition of $f$ we know that $f(a) = 0$ when $a = 0$. \\
+    
+case 2: Let $b > 0$.\\
+    If $b > 0$, then $f(a) = b$ means that
+\begin{align*}
+    \frac{1-a}{a} &= b \\
+    1 - a &= ab \\
+    1 &= ab + a \\
+    1 &= a\cdot (b + 1) \\
+    \frac{1}{b+1} &= a.
+\end{align*}
+In both cases there exists an $a\in [0,1)$ such that $f(a) = b$.
+Therefore $f$ is surjective.
+%----------------------------------------------------------- 
+Since $f$ is both injective and surjective, $f$ is bijective.
 
 \end{proof}
 
