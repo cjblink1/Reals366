@@ -1,4 +1,5 @@
 \documentclass{amsart}
+\usepackage{amssymb}
 \usepackage{enumerate}
 \usepackage[headheight=12pt,textwidth=7in,top=1in, bottom=1in]{geometry}
 
@@ -93,9 +94,38 @@ Therefore $xy$ does not have to be irrational.
 \end{proof}
 \newpage
 
-\item \emph{The problem statement of problem 2 goes here.}
+\item \emph{Let $X$ be a non-empty subset of an ordered set $S$. Suppose that $\gamma \in S$ is a lower bound of $X$ and $\psi \in S$ is an upper bound of $X$.
+\begin{enumerate}[(a)]
+\item Prove that $\gamma \leq \psi$.
+\item Determine if the statement $\gamma < \psi$ is \emph{always} true. Prove your claim.\\
+\end{enumerate}}
+(a) Prove that $\gamma \leq \psi$.
 \begin{proof}
-Your proof goes here.
+Note: $S$ is on ordered set, so $S$ has the transitivity property. \\
+Since $\gamma$ is a lower bound of $X$, then $\forall x \in X$, 
+$\gamma\leq x$. \\
+Similarly, since $\psi$ is an upper bound of $X$, then $\forall x \in X$,
+$x \leq\psi$. \\
+By transitivity of S:
+\begin{align*}
+    \forall x\in X, \gamma \leq x \leq \psi \\
+    \text {so } \gamma \leq \psi.
+\end{align*}
+
+\end{proof}.
+(b) The statement "$\gamma<\psi$ is always true" is false.
+\begin{proof}
+Note: $S$ is on ordered set, so $S$ has the transitivity and trichotomy properties. \\
+Consider $a\in S$ and $X = \{a\}$. Note that $X$ is non-empty.
+Additionally, consider the case where $\gamma = a$ and $\psi = a$.
+By definition of lower bound, $\gamma$ is a lower bound of X.
+And by definition of upper bound, $\psi$ is an upper bound of X.
+We can see by transitivity of equality:
+\begin{align*}
+    \gamma &= a = \psi \\
+    \text{so } \gamma &= \psi
+\end{align*}
+By the trichotomy property, $ \gamma \nless \psi$.
 \end{proof}
 
 \end{enumerate}
