@@ -46,14 +46,51 @@
                         \CM
                         \end{tabular}
 
-\noindent \hrulefill
-
+\noindent \hrulefill \\\\
+On this Homework Set, I worked with Lauren Wiseman.\\
 \begin{enumerate}[1.]
-\item \emph{The problem statement of problem 1 goes here.}
+\item \emph{Let $x,r \in \mathbb{R}$ with $r \in \mathbb{Q}$, $x \not \in \mathbb{Q}$, and $r \neq 0$.
+\begin{enumerate}[(a)]
+\item Prove that $rx \not \in \mathbb{Q}$.
+\item If $y \in \mathbb{R} \setminus \mathbb{Q}$, determine if $xy$ \emph{must} be irrational. Prove your claim. \\
+\end{enumerate}}
+
+(a) Prove that $rx\notin\mathbb{Q}$.
 \begin{proof}
-Your proof goes here.
+Note: $\mathbb{Q}$ is closed under multiplication and multiplicative inverse. \\
+Assume, for contradiction, that $rx = p \in\mathbb{Q}$. Then:
+\begin{align*}
+    rx &= p \\
+    \left(\frac{1}{r}\right)\cdot rx &= \left(\frac{1}{r}\right)\cdot p \\
+    \left(\frac{r}{r}\right)\cdot x &= \left(\frac{p}{r}\right) \\
+    1\cdot x &= \frac{p}{r}\\
+    x &= \frac{p}{r}
+\end{align*}
+Since $p\in\mathbb{Q}$ and $r\in\mathbb{Q}$, then $\frac{p}{r}\in\mathbb{Q}$. 
+Thus, $x\in\mathbb{Q}$. But this is absurd! Therefore $rx\notin\mathbb{Q}$.
 \end{proof}
 
+(b) The statement "If $y \in \mathbb{R} \setminus \mathbb{Q}$, $xy$ \emph{must} be irrational" is false. 
+\begin{proof}
+Note: $\mathbb{Q}$ is closed under multiplicative inverse. \\
+Additionally, 
+\begin{align*}
+    \frac{1}{\sqrt{2}} &\text{ is irrational. Since } \\
+    \frac{1}{\sqrt{2}} &= \frac{1}{\sqrt{2}}\cdot 1 \\
+    &= \frac{1}{\sqrt{2}}\cdot \left(\frac{\sqrt{2}}{\sqrt{2}}\right) \\
+    &= \frac{1\cdot\sqrt{2}}{\sqrt{2}\cdot\sqrt{2}} \\
+    &= \frac{\sqrt{2}}{2} \text{ which is irrational by (a).}
+\end{align*}
+Consider:
+\begin{align*}
+    x = \sqrt{2} &\text{ and } y = \frac{1}{\sqrt{2}} \\
+    \text{So } xy &= \sqrt{2}\cdot\left(\frac{1}{\sqrt{2}}\right) \\
+    &= \frac{\sqrt{2}}{\sqrt{2}} \\
+    &= 1 \text{ (which is rational).}
+\end{align*}
+In this case, $x$ and $y$ are both irrational, But $xy$ is rational.
+Therefore $xy$ does not have to be irrational.
+\end{proof}
 \newpage
 
 \item \emph{The problem statement of problem 2 goes here.}
