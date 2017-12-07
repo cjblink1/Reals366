@@ -143,10 +143,10 @@ Since $\gamma$ is a lower bound of $B$, then:
 \begin{align*}
     \forall x\in B \text{, } \gamma &\leq x \\
     (-1)\cdot\gamma &\geq (-1)\cdot x \text{ (by Proposition 1.18c in Rudin)} \\
-    -\gamma \geq -x.
+    -\gamma &\geq -x.
 \end{align*} 
 Thus, by the definition of $-B$ and the definition of upper bound,
-$-\gamma$ is an upper bound for $B$. \\
+$-\gamma$ is an upper bound for $-B$. \\
 
 It remains to be shown that $-\gamma$ is the \emph{least} upper bound of $-B$.
 This means that for every $\epsilon > 0$, there should exist an $\alpha$ such that
@@ -170,7 +170,13 @@ Then:
     -\gamma -\epsilon &< &-\delta &< -\gamma
 \end{alignat*}
 Since $-\delta\in -B$, choose $\alpha = -\delta$. Thus we have shown that
-$-\gamma$ is the \emph{least} upper bound of $-B$.
+$-\gamma$ is the \emph{least} upper bound of $-B$. 
+
+Since
+\[
+    \sup(-B) = -\gamma \text{ and } \inf(B) = \gamma,
+\]
+it follows that $\inf(B) = -\sup(-B)$.
 \end{proof}
 
 \newpage
