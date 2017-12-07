@@ -128,5 +128,52 @@ We can see by transitivity of equality:
 By the trichotomy property, $ \gamma \nless \psi$.
 \end{proof}
 
+\newpage
+
+\item \emph{Let $B$ be a nonempty set of real numbers that is bounded below. Define the set 
+\[ -B = \{ -x : x \in B \}.\]
+Prove that $\inf(B) = -\sup(-B)$.}
+\begin{proof}
+Note: Since B is a nonempty set of real numbers which is bounded below,
+then $\inf(B)$ exists.
+
+Let $\inf(B) = \gamma\in\mathbb{R}$. We aim to show that $-\gamma = \sup(-B)$.
+First, let us show that $-\gamma$ is an upper bound for $-B$.
+Since $\gamma$ is a lower bound of $B$, then:
+\begin{align*}
+    \forall x\in B \text{, } \gamma &\leq x \\
+    (-1)\cdot\gamma &\geq (-1)\cdot x \text{ (by Proposition 1.18c in Rudin)} \\
+    -\gamma \geq -x.
+\end{align*} 
+Thus, by the definition of $-B$ and the definition of upper bound,
+$-\gamma$ is an upper bound for $B$. \\
+
+It remains to be shown that $-\gamma$ is the \emph{least} upper bound of $-B$.
+This means that for every $\epsilon > 0$, there should exist an $\alpha$ such that
+\[
+    -\gamma -\epsilon < \alpha < -\gamma \text{ and }\alpha \in -B
+\]
+If we can find such an $\alpha$ for every $\epsilon>0$,
+then we will have shown that $\gamma$ is the least upper bound 
+of $-B$.
+
+Note: $\gamma$ is the greatest lower bound of $B$. Hence, for every
+$\epsilon > 0$, there exists a $\delta$ such that:
+\[
+    \gamma < \delta < \gamma + \epsilon \text{ and } \delta\in B.
+\]
+Then:
+\begin{alignat*}{2}
+    \gamma &< &\delta &< \gamma + \epsilon \\
+    (-1)\cdot\gamma &> &(-1)\cdot\delta &> (-1)\cdot(\gamma + \epsilon) \text{ (by Proposition 1.18c in Rudin)}\\
+    -\gamma &> &-\delta &> -\gamma -\epsilon \\
+    -\gamma -\epsilon &< &-\delta &< -\gamma
+\end{alignat*}
+Since $-\delta\in -B$, choose $\alpha = -\delta$. Thus we have shown that
+$-\gamma$ is the \emph{least} upper bound of $-B$.
+\end{proof}
+
+\newpage
+
 \end{enumerate}
 \end{document} 
