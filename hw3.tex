@@ -1,0 +1,165 @@
+\documentclass{amsart}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage[headheight=12pt,textwidth=7in,top=1in, bottom=1in]{geometry}
+
+%some custom commands you may find useful
+
+\usepackage{xparse}
+\DeclareDocumentCommand{\diff}{O{} m}{
+    \frac{\mathrm{d} #1}{\mathrm{d}#2}
+    }
+\DeclareDocumentCommand{\pdiff}{O{} m}{
+    \frac{\partial #1}{\partial #2}
+    }
+\DeclareDocumentCommand{\integral}{O{} O{} m O{x}}{
+    \int_{#1}^{#2} #3\ \mathrm{d}#4
+    }
+
+\def\name{Connor Boyle} %your name goes here
+\def\CM{2239} %your cm goes here
+\def\hwnum{3} %homework number goes here
+
+%these packages create the footer and page numbering
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\pagestyle{fancy}
+\lhead{\name}
+\chead{MA 366: Homework Set \hwnum}
+\rhead{\CM}
+\fancyfoot[C]{\footnotesize Page \thepage\ of \pageref{LastPage}}
+
+\fancypagestyle{firststyle}
+{  \renewcommand{\headrulewidth}{0pt}%
+   \fancyhf{}%
+   \fancyfoot[C]{\footnotesize Page \thepage\ of \pageref{LastPage}}
+}
+
+\begin{document}
+\noindent
+\thispagestyle{firststyle}
+\begin{tabular}{l}
+{\LARGE \textbf{MA 366: Real Analysis} }\\
+{\Large Homework Set \hwnum}
+\end{tabular} \hfill \begin{tabular}{r}
+                        \name \\
+                        \CM
+                        \end{tabular}
+
+\noindent \hrulefill \\\\
+On this Homework Set, I worked with Lauren Wiseman.\\
+\begin{enumerate}[1.]
+\item Let $a, b \in \mathbb R$ with $a<b$.
+    \begin{enumerate}[(a)]
+    \item Prove that $(a,b)\sim(0,1)$.
+    \item Prove that $(a,b)\sim(0,\infty)$.\\\\
+    \end{enumerate} 
+
+(a) Prove that $(a,b) \sim (0,1)$
+\begin{proof}
+Note: Two sets are similar if there exists a bijection between them. Consider the function $f: (a,b) \rightarrow (0,1)$
+\[
+    f(x) = \frac{x-a}{b-a}
+\]
+We now need to show that f is bijective. \\
+Claim: f is injective.\\
+Assume $f(x) = f(y)$ where $x,y\in(a,b)$. Then
+\begin{align*}
+    f(x) &= f(y) \\
+    \frac{x-a}{b-a} &= \frac{y-a}{b-a} \\
+    x - a &= y - a \\
+    x &= y
+\end{align*}
+Thus, $f$ is injective. \\
+Claim: $f$ is surjective. \\
+Pick any arbitrary value $z \in (0,1)$. Then consider $f(w) = z$ for some $w\in(a,b)$:
+\begin{align*}
+    \frac{w - a}{b - a} &= z \\
+    w - a &= z\cdot (b - a) \\
+    w &= z \cdot (b - a) + a
+\end{align*}
+So $f(z\cdot (b-a) + a) = z$ for all $z \in (0,1)$.
+Thus, $f$ is surjective. \\
+Since $f$ is both injective and surjective, $f$ is bijective. 
+Therefore, $(a,b) \sim (0,1)$.
+\end{proof}
+
+(b) Prove that $(a,b) \sim (0,\infty)$
+\begin{proof}
+Note: we know that $(a,b) \sim (0,\infty)$. If we can show that
+$(0,1) \sim (0,\infty)$, then by transitivity: $(a,b)\sim (0,\infty)$.
+So we aim to show that $(0,1) \sim (0,\infty)$. \\\\
+Consider the function $f: (0,1) \rightarrow (0, \infty)$:
+\[
+    f(x) = \frac{1}{x} - 1    
+\]
+Claim: $f$ is injective. \\
+Assume $f(x) = f(y)$ where $x,y\in(0,1)$. Then
+\begin{align*}
+    f(x) &= f(y) \\
+    \frac{1}{x} - 1 &= \frac{1}{y} - 1 \\
+    \frac{1}{x} &= \frac{1}{y} \\
+    x &= y
+\end{align*}
+Thus $f$ is injective. \\
+Claim: $f$ is surjective. \\
+Pick any arbitrary $z\in(0,\infty)$. Then consider
+$f(w) = z$ for some $w\in(0,1)$:
+\begin{align*}
+    \frac{1}{w} - 1 &= z \\
+    \frac{1}{w} &= z + 1 \\
+    1 &= w\cdot (z + 1) \\
+    \frac{1}{z+1} &= w
+\end{align*}
+So $f(\frac{1}{z+1}) = z$ for all $z\in(0,\infty)$. 
+Thus, $f$ is surjective.\\
+Since $f$ is both injective and surjective, $f$ is bijective. Hence
+$(0,1) \sim (0,\infty)$. \\
+Since $(a,b) \sim (0,1)$ and $(0,1) \sim (0,\infty)$, by transitivity
+$(a,b) \sim (0,\infty)$.
+\end{proof}
+\newpage
+
+\item Consider the set $X=\mathbb R$, then for $a,b\in \mathbb R$,
+\begin{enumerate}[(a)]
+\item $m_1(a,b) =(a-b)^2$ is a metric. \\
+\begin{proof}
+We aim to show that $m_1(a,b) > 0$ for $a \neq b$ and $m_1(a,b) > 0$ for $a = b$. \\
+Let $c = a - b \neq 0$. Then $m_1(a,b) = c^2$ where $c \in \mathbb{R}$.
+By Rudin Proposition 1.18, $c^2 > 0$ since $c \neq 0$. \\
+Now consider the case where $a = b$. Then 
+\begin{align*}
+    m_1(a,b) &= (a - b)^2 \\
+    &= (a - a)^2 \\
+    &= 0^2 \\
+    &= 0\cdot 0 \\
+    &= 0.
+\end{align*}
+Now, we aim to show that $m_1(a,b) = m_1(b,a)$. \\
+\begin{align*}
+    m_1(a,b) &= (a - b)^2 \\
+    &= a^2 -2\cdot a \cdot b + b^2 \\
+    &= b^2 -2 \cdot b \cdot a + a^2 \\
+    &= (b - a)^2 \\
+    &= m_1(b,a).
+\end{align*}
+Finally, we aim to show that $m_1(a,b) \leq m_1(a,c) + m_1(c,b)$.
+\begin{align*}
+    m_1(a,c) + m_1(c,b) &= (a - c)^2 + (c - b)^2 \\
+    &= a^2 -2\cdot a\cdot c + c^2 + c^2 -2\cdot c\cdot b + b^2 \\
+    &= a^2 + (-2\cdot a \cdot c + 2\cdot c^2 - 2\cdot c\cdot b) + b^2 \\
+    &= a^2 - 2\cdot( a \cdot c - c^2 + c\cdot b) + b^2 \\
+    &= a^2 - 2\cdot a \cdot( c - \frac{c^2}{a} + \frac{c\cdot b}{a}) + b^2 \\
+    &\geq a^2 - 2\cdot a \cdot b + b^2 \\
+    &= (a - b)^2 \\
+    &= m_1(a,b).
+\end{align*}
+Thus, $m_1$ is a metric.
+\end{proof}
+\end{enumerate}
+\newpage
+
+
+\end{enumerate}
+\end{document} 

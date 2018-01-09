@@ -1,0 +1,416 @@
+\documentclass{amsart}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage[headheight=12pt,textwidth=7in,top=1in, bottom=1in]{geometry}
+
+%some custom commands you may find useful
+
+\usepackage{xparse}
+\DeclareDocumentCommand{\diff}{O{} m}{
+    \frac{\mathrm{d} #1}{\mathrm{d}#2}
+    }
+\DeclareDocumentCommand{\pdiff}{O{} m}{
+    \frac{\partial #1}{\partial #2}
+    }
+\DeclareDocumentCommand{\integral}{O{} O{} m O{x}}{
+    \int_{#1}^{#2} #3\ \mathrm{d}#4
+    }
+
+\def\name{Connor Boyle} %your name goes here
+\def\CM{2239} %your cm goes here
+\def\hwnum{4} %homework number goes here
+
+%these packages create the footer and page numbering
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\pagestyle{fancy}
+\lhead{\name}
+\chead{MA 366: Homework Set \hwnum}
+\rhead{\CM}
+\fancyfoot[C]{\footnotesize Page \thepage\ of \pageref{LastPage}}
+
+\fancypagestyle{firststyle}
+{  \renewcommand{\headrulewidth}{0pt}%
+   \fancyhf{}%
+   \fancyfoot[C]{\footnotesize Page \thepage\ of \pageref{LastPage}}
+}
+
+\begin{document}
+\noindent
+\thispagestyle{firststyle}
+\begin{tabular}{l}
+{\LARGE \textbf{MA 366: Real Analysis} }\\
+{\Large Homework Set \hwnum}
+\end{tabular} \hfill \begin{tabular}{r}
+                        \name \\
+                        \CM
+                        \end{tabular}
+
+\noindent \hrulefill \\\\
+On this Homework Set, I worked with Lauren Wiseman.\\
+\begin{enumerate}[1.]
+    \item Let $X$ be an infinite set. Define $d: X \times X \to \mathbb{R}$ by
+    \[ d(x,y) = \begin{cases} 1 &  x \neq y \\ 
+                              0 &  x = y. 
+                \end{cases}
+    \]
+    \begin{enumerate}[(a)]
+    \item Prove that $d$ is a metric.
+
+\begin{proof}
+Note: if $d$ is a metric, it must obey separation, symmetry, and the
+triangle inequality.
+
+First, we aim to show that $d(x,y)$ obeys separation: $d(x,y) > 0$ if
+$x \neq y$ and $d(x,y) = 0$ if $x = y$.\\
+
+Case 1: $x \neq y$\\
+If $x \neq y$, $d(x,y)$ is defined to be equal to $1$ which is greater than zero.\\
+
+Case 2: $x = y$ \\
+If $x = y$, $d(x,y)$ is defined to be equal to zero. \\
+Thus, $d(x,y)$ obeys separation. \\
+
+Now, we aim to show that $d(x,y)$ obeys symmetry: $d(x,y) = d(y,x)$. \\
+
+Case 1: $x \neq y$\\
+If $x \neq y$, $d(x,y) = d(y,x) = 1$ \\
+
+Case 2: $x = y$\\
+If $x = y$, $d(x,y) = d(y,x) = 0$.\\
+Thus, $d(x,y)$ obeys symmetry. \\
+
+Finally, we aim to show that $d(x,y)$ obeys the triangle inequality: 
+For $a,b,c\in X$, $d(a,b) \leq d(a,c) + d(c,b)$. \\
+
+Suppose, for contradiction that $d(a,b) \nleq d(a,c) + d(c,b)$ for
+some values $a,b,c\in X$.
+The only way for this to happen, according to the definition of $d$,
+is for $d(a,b) = 1$ and $d(a,c) = d(c,b) = 0$. But what would this imply?
+
+\begin{align*}
+    d(a,c) = 0 &\rightarrow a = c \\
+    d(c,b) = 0 &\rightarrow b = c \\
+    d(a,b) = 1 &\rightarrow a \neq b \\
+\end{align*}
+This is absurd! Therefore $d(x,y)$ obeys the triangle inequality.
+Since $d(x,y)$ obeys separation, symmetry, and the triangle inequality,
+$d(x,y)$ is a metric.
+\end{proof}
+
+        
+    \item Determine which subsets of $(X,d)$ are open.\\
+Claim: Every subset of $(X, d)$ is open.
+\begin{proof}
+Note: If a subset $A$ of $(X, d)$ is open, that means that every point in $A$
+is an interior point of $A$. That is to say, for each $a\in A$, there exists
+an $r > 0$ such that $N_r(a) \subseteq A$. \\\\
+First, consider the empty set $\phi \subseteq X$. Since $\phi$ is empty,
+it contains no points. Thus, all points of $\phi$ are interior points. \\\\
+Second, consider an arbitrary non-empty set $A \subseteq X$. Since
+A is non-empty, it must contain some $a \in A$.
+Consider $N_\frac{1}{2}(a)$: 
+\begin{align*}
+    N_\frac{1}{2}(a) &= \{x\in X : d(a,x) < 1/2\}
+\end{align*}
+But by definition of $d(x,y)$, the only element in $N_\frac{1}{2}(a)$
+is $a$ itself. Thus, for all $a\in A$:
+\begin{align*}
+    N_\frac{1}{2}(a) &= \{a\}
+\end{align*}
+But since $a\in A$, $N_\frac{1}{2}(a) \subseteq A$. Thus every point of $A$
+is an interior point, so A is open. Since $A$ was an arbitrary non-empty subset of $(X,d)$, by universal generalization,
+every non-empty subset of $(X,d)$ is open. \\\\
+Therefore, every subset of $(X,d)$ is open.
+\end{proof}
+        
+    \item Determine which subsets of $(X,d)$ are closed.
+
+Claim: Every subset of $(X,d)$ is closed.
+\begin{proof}
+Note: If a subset $A$ of $(X,d)$ is closed, then every limit point of 
+$A$ is contained in $A$. \\\\
+Lemma: Every subset $A$ of $(X,d)$ has no limit points.
+\begin{proof}.\\
+Case 1: Consider the empty set $A = \phi$.
+Assume, for contradiction, that $A$ has a limit point in $(X,d)$.
+Then there exists some point $x\in X$ such that for all $\epsilon > 0$,
+$N_\epsilon(x)$ contains an element $a\in A$ and $a \neq x$. But A is the empty set! There
+can be no such $a\in A$. Thus, $A$ has no limit points.\\
+
+Case 2: Consider a non-empty subset $A$ of $(X,d)$. Assume, for contradiction,
+that $A$ has a limit point in $(X,d)$. Then there exists some point $x \in X$
+such that for all $\epsilon > 0$, $N_\epsilon(x)$ contains an element $a \in A$ and 
+$a \neq x$. 
+
+Consider $N_\frac{1}{2}(x)$: 
+\begin{align*}
+    N_\frac{1}{2}(x) &= \{y\in X : d(y,x) < 1/2\}
+\end{align*}
+By definition of $d(x,y)$, the only element in $N_\frac{1}{2}(x)$
+is $x$ itself. Thus:
+\begin{align*}
+    N_\frac{1}{2}(x) &= \{x\}
+\end{align*}
+But there is no other point besides $x$ in $N_\frac{1}{2}(x)$! Therefore $x$
+cannot be a limit point of $A$. Since $x$ was an arbitrary element in $X$,
+by universal generalization, no point in $X$ can be a limit point of $A$. Thus,
+$A$ has no limit points. \\
+
+In all cases, A has no limit points. Thus, every subset $A$ of $(X,d)$ has no
+limit points.
+\end {proof}
+
+Now, consider an arbitrary subset $A$ of $(X,d)$. By the above lemma, A has no limit points.
+Consequently, the set the set of limit points of $A$ is the empty set $\phi$.
+And since $\phi$ is contained in any set, $\phi \subseteq A$. Thus $A$
+contains all of its limit points. Hence $A$ is closed.
+Since $A$ was an arbitrary subset of $X$, by universal generalization,
+every subset of $(X,d)$ is closed.
+\end{proof}
+\end{enumerate}
+\newpage
+\item Let $A$ be the following subset of $(\mathbb{R},d_{\infty})$ (the reals with the usual metric):
+\[ A=\left\{ (-1)^n+\frac{1}{m} : n,m \in \mathbb{N} \right\}. \]
+Find (and prove your claims!) the limit points and isolated points of the set, and determine whether the set is open, closed or neither.
+
+Claim: The set of $A$'s limit points, $A' = \{-1, 1\}$.
+\begin{proof}
+We must first show that $1$ and $-1$ are limit points of $A$. \\
+
+Claim: $-1$ is a limit point of $A$. \\
+Note: If $-1$ is a limit point of $A$, then for all $\epsilon > 0$,
+$N_\epsilon(-1)$ contains a point $a \in A$. \\
+Fix $\epsilon > 0$. Now, let
+\[
+    a = (-1)^n + \frac{1}{m} \text{ for some } n,m \in \mathbb{N}  
+\]
+In order for $a$ to be in $N_\epsilon(-1)$, then:
+\begin{align*}
+    d_\infty(-1,a) &< \epsilon \\
+    \left| -1 - \left( (-1)^n + \frac{1}{m} \right) \right| &< \epsilon
+\end{align*}
+So choose $n$ to be any odd integer in $\mathbb{N}$. By the archimedian principle,
+choose $m \in \mathbb{N}$ such that $m\cdot \epsilon > 1$. Then:
+\begin{align*}
+    m\cdot\epsilon &> 1 \\
+    \epsilon &> \frac{1}{m} \\
+    \epsilon &> \frac{1}{m} + (-1) - (-1) \\
+    \epsilon &> \frac{1}{m} + (-1)^n - (-1) \\
+    \epsilon &> \left( \frac{1}{m} + (-1)^n \right) - (-1) \\
+    \epsilon &> \left| \left( \frac{1}{m} + (-1)^n \right) - (-1) \right| \\
+    \epsilon &> \left| (-1) - \left( \frac{1}{m} + (-1)^n \right) \right| \\
+    \epsilon &> d_\infty(-1, a)
+\end{align*}
+By this method, we have shown that we can find an $a \in A$ that 
+is also contained in $N_\epsilon(-1)$ for all values of $\epsilon$.
+Therefore, $-1$ is a limit point of $A$. \\
+
+Claim: $1$ is a limit point of $A$. \\
+Note: If $1$ is a limit point of $A$, then for all $\epsilon > 0$,
+$N_\epsilon(1)$ contains a point $a \in A$. \\
+Fix $\epsilon > 0$. Now, let
+\[
+    a = (-1)^n + \frac{1}{m} \text{ for some } n,m \in \mathbb{N}  
+\]
+In order for $a$ to be in $N_\epsilon(1)$, then:
+\begin{align*}
+    d_\infty(1,a) &< \epsilon \\
+    \left| 1 - \left( (-1)^n + \frac{1}{m} \right) \right| &< \epsilon
+\end{align*}
+So choose $n$ to be any even integer in $\mathbb{N}$. By the archimedian principle,
+choose $m \in \mathbb{N}$ such that $m\cdot \epsilon > 1$. Then:
+\begin{align*}
+    m\cdot\epsilon &> 1 \\
+    \epsilon &> \frac{1}{m} \\
+    \epsilon &> \frac{1}{m} + (1) - (1) \\
+    \epsilon &> \frac{1}{m} + (-1)^n - (1) \\
+    \epsilon &> \left( \frac{1}{m} + (-1)^n \right) - (1) \\
+    \epsilon &> \left| \left( \frac{1}{m} + (-1)^n \right) - (1) \right| \\
+    \epsilon &> \left| (1) - \left( \frac{1}{m} + (-1)^n \right) \right| \\
+    \epsilon &> d_\infty(1, a)
+\end{align*}
+By this method, we have shown that we can find an $a \in A$ that 
+is also contained in $N_\epsilon(1)$ for all values of $\epsilon$.
+Therefore, $1$ is a limit point of $A$. \\
+
+Now we must show that there are no other limit points of $A$ besides
+$-1$ and $1$.
+
+Claim: If $x \in X$ and $x \neq -1$ and $x \neq 1$, then $x$ is not a limit point of $A$. \\
+% Note: If $x$ is a limit point of $A$, then for every $\epsilon > 0$, there must be an 
+% infinite number of elements of $A$ in $N_\epsilon(x)$. Consequently, if
+% there exists an $\epsilon > 0$ for which there are only a finite number of elements of 
+% $A$ in $N_\epsilon(x)$, then $x$ is not a limit point of $A$.
+
+Note: We can write $A = A_1 \cup A_{-1}$ where 
+\begin{align*}
+    A_1 &= \left\{1+ \frac{1}{m}: m\in \mathbb{N}\right\} \text{ and} \\
+    A_{-1} &= \left\{-1+ \frac{1}{m}: m\in \mathbb{N}\right\}
+\end{align*}
+
+Assume $x \in X$ and $x \neq -1$ and $x \neq 1$. 
+Let $d = \min(|x - 1|, |x + 1|)$ and consider $N_\frac{d}{2}(x)$.
+Suppose then that: \\
+
+Case 1: $a \in A_1$ and $a \in N_\frac{d}{2}(x)$.
+Then there exists an $m \in \mathbb{N}$ such that
+\[
+    a = 1 + \frac{1}{m}    
+\]
+Suppose, for contradiction that $m\cdot \frac{d}{2} > 1$ so that
+\[
+    \frac{d}{2} > \frac{1}{m} = |a - 1|    
+\]
+Then
+\begin{align*}
+    d \leq |x - 1| &\leq |x - a| + |a - 1| \\
+    &< \frac{d}{2} + \frac{d}{2}\\
+    &= d\\
+    d &< d
+\end{align*}
+This is absurd! Therefore $m\cdot \frac{d}{2} \leq 1$ so that 
+\[
+    \frac{d}{2} \leq \frac{1}{m}
+\]
+This means that $A_1 \cap N_\frac{d}{2}(x)$ is finite. \\
+
+Case 2: $a \in A_{-1}$ and $a \in N_\frac{d}{2}(x)$.
+Then there exists an $m \in \mathbb{N}$ such that
+\[
+    a = -1 + \frac{1}{m}    
+\]
+Suppose, for contradiction that $m\cdot \frac{d}{2} > 1$ so that
+\[
+    \frac{d}{2} > \frac{1}{m} = |a - (-1)|    
+\]
+\begin{align*}
+    d \leq |x - (-1)| &\leq |x - a| + |a - (-1)| \\
+    &< \frac{d}{2} + \frac{d}{2}\\
+    &= d\\
+    d &< d
+\end{align*}
+This is absurd! Therefore $m\cdot \frac{d}{2} \leq 1$ so that 
+\[
+    \frac{d}{2} \leq \frac{1}{m}
+\]
+This means that $A_{-1} \cap N_\frac{d}{2}(x)$ is finite.
+
+In each case, there can only be a finite number of points in
+$A \cap N_\frac{d}{2}(x)$. Thus, $x$ is not a limit point of A.
+
+\end{proof}
+
+Claim: All points in $A$ are isolated points.
+\begin{proof}
+    Note: We can write $A = A_1 \cup A_{-1}$ where 
+    \begin{align*}
+        A_1 &= \left\{1+ \frac{1}{m}: m\in \mathbb{N}\right\} \text{ and} \\
+        A_{-1} &= \left\{-1+ \frac{1}{m}: m\in \mathbb{N}\right\}
+    \end{align*}
+
+Case 1: Consider an arbitrary $a_k \in A_1$ such that
+\[
+    a_k = 1 + \frac{1}{k}
+\]
+We aim to show that $a_k$ is not a limit point.
+Let 
+\begin{align*}
+    d_k &= |a_k - a_{k+1}| \\
+    &= \left| 1 + \frac{1}{k} - \left(1 + \frac{1}{k+1}\right)\right|\\
+    &= \left| \frac{1}{k} - \frac{1}{k+1} \right| \\
+    &= \left| \frac{1}{k\cdot (k+1)} \right| \\
+    &= \frac{1}{k\cdot (k+1)}
+\end{align*}
+Consider $N_{d_k}(a_k)$
+
+\end{proof}
+
+
+
+All points in A are isolated points.
+A is neither open nor closed.
+
+
+\newpage
+
+\item Let $A \subseteq X$ where $(X,d)$ is some metric space. Define $A'$ to be the set of limit points of $A$.
+\begin{enumerate}[(a)]
+\item Prove that $A'$ is closed.
+\begin{proof} Note: $A'$ is closed if and only if every limit point of $A'$ 
+    is contained in $A'$.
+
+    Suppose $A'$ is the empty set. Then $A'$ has no limit points. Thus, every limit point 
+    of $A'$ is contained in $A'$.\\
+
+    Now suppose that $A'$ is non-empty and finite. In order for $A'$ to have a limit point
+    $x \in X$, any neighborhood around $x$ must contain an infinite number of points of $A'$.
+    Since $A'$ is finite, no such point $x$ can exist. Thus, $A'$ has no limit points. Therefore
+    every limit point of $A'$ is contained in $A'$. \\
+    
+    Finally suppose that $A'$ is non-empty and infinite. Let $x$ be a limit point of $ A'$.
+    Fix an $\epsilon > 0$. There must be a $y \in A'$ such that $0 < d(x,y) < \frac{\epsilon}{2}$.
+    Let $d(x,y) = \omega$. Since $y \in A'$, there must be a $z \in A$ such that 
+    $0 < d(y, z) < \omega$. By the triangle inequality, we see that:
+    \begin{align*}
+        d(x,z) &\leq d(x,y) + d(y,z) \\
+        &<  \frac{\epsilon}{2} + \omega \\
+        &< \frac{\epsilon}{2} + \frac{\epsilon}{2} \\
+        &= \epsilon
+    \end{align*}
+    So by definition, $x$ is a limit point of $A$. Thus, $x \in A'$. 
+    By universal generalization, all limit points of $A'$ are contained in $A'$.
+    
+    In all cases, every limit point of $A'$ is contained in $A'$. Thus 
+    $A'$ is closed.
+\end{proof}
+\item Prove that $A$ and $\overline{A}$ have the same limit points.
+\begin{proof}
+    Let $A'$ be the set of limit points of $A$ and let $\overline{A}'$ be the
+    set of limit points of $\overline{A}$. We aim to show that $\overline{A}' = A'$. \\
+
+    First let's show that $A' \subseteq \overline{A}'$:
+    Let $x \in A'$. Then we know that there exists some point $y \in A$ such that 
+    $d(x,y) < \epsilon$ for all $\epsilon > 0$. We also know that since $A \subseteq \overline{A}$,
+    $y \in \overline A$. Then we know that there exists some point $y \in \overline{A}$ such that 
+    $d(x,y) < \epsilon$ for all $\epsilon > 0$. So y is a limit point of $\overline{A}$. Thus, $y \in \overline{A}'$. \\
+    
+    Now let's show that $\overline{A}' \subseteq A'$:
+    Let $x \in \overline{A}'$. Then we know that for all $\epsilon > 0$ there exists some
+    $y \in \overline{A}$ such that $d(x,y) < \epsilon$. We know that $\overline{A} = A \cup A'$.
+    So either $y \in A$ or $y \in A'$. Consider these cases separately: \\
+    
+    Case 1: Assume $y \in A$.
+    Then for all $\epsilon > 0$ there exists some
+    $y \in A$ such that $d(x,y) < \epsilon$. Thus, $x$ is a limit point of $A$: $x \in A'$. \\
+    
+    Case 2: Assume $y \in A'$.
+    Then for all $\epsilon > 0$ there exists some $y \in A'$ such that $d(x,y) < \frac{\epsilon}{2}$.
+    Then choose some $r > 0$ to be equal to $ \frac{\epsilon}{2} - d(x,y)$. Since $y$ is a limit point of $A$, 
+    there must be some $z \in A$ such that $z \in N_r(y)$. By the triangle inequality, we have:
+    \begin{align*}
+        d(x, z) &\leq d(x,y) + d(y,z) \\
+        &< \frac{\epsilon}{2} + r \\
+        &< \frac{\epsilon}{2} + \frac{\epsilon}{2} \\
+        &= \epsilon
+    \end{align*}
+
+    Thus, every neighborhood about $x$ contains a $z \in A$. So $x$ is a limit point of $A$: $x \in A'$.
+
+    By universal generalization, $\overline{A}' \subseteq A'$. We've shown the containment both ways, so
+    $\overline{A}' = A'$.
+\end{proof}
+\item Do $A$ and $A'$ always have the same limit points? Prove your claim.
+
+Claim: $A$ and $A'$ do not always have the same limit points.\\
+
+Consider 
+\[ A=\left\{ 1+\frac{1}{m} : m \in \mathbb{N} \right\}. \]
+We've shown that $A' = {1}$. But since $A'$ is finite, $A'$ cannot have any limit points.
+Thus $A'' = \phi$ and $A' \neq A''$.
+\end{enumerate}
+
+
+\end{enumerate}
+\end{document} 
