@@ -53,10 +53,8 @@
 
 \noindent \hrulefill \\\\
 On this Homework Set, I worked with Lauren Wiseman.\\
-\begin{enumerate}[1.]
-\item Give a clean analysis proof (using the $\epsilon,N$-definition of a limit) to show that the following sequence converges in $(\mathbb{R},d_{\infty})$:
-\[ x_n = \frac{2n^2+3n-1}{7n^2+8n+3}. \]
-%-------------- Problem 1 -------------------
+First, here are some useful lemmas:
+%------------ Lemmas -------------------
 \begin{lemma}
     Any constant sequence $(x_n)$ where $x_n = c$ converges to $c$.
     \begin{proof}
@@ -68,6 +66,87 @@ On this Homework Set, I worked with Lauren Wiseman.\\
         \end{align*}
     \end{proof}
 \end{lemma}
+\begin{lemma}
+    For all $a,b \in\mathbb{R}$, $|a\cdot b| = |a|\cdot|b|$
+    \begin{proof} (By cases) \\
+
+        Case 1: Assume $a$ and $b$ are both nonnegative. Then we know that $a\cdot b \geq 0$. Thus:
+        \begin{align*}
+            |a \cdot b| &= a \cdot b \text{ by Rudin Def. 1.32 } \\
+            &= |a| \cdot |b| \text{ by Rudin Def. 1.32 } 
+        \end{align*}
+
+        Case 2: Assume $a$ and $b$ are both negative. Then we know that $a\cdot b \geq 0$. Thus:
+        \begin{align*}
+            |a \cdot b| &= a \cdot b \text{ by Rudin Def. 1.32 } \\
+            &= (1)\cdot(a)\cdot (b) \\
+            &= (-1)\cdot(-1)\cdot(a)\cdot (b) \\
+            &= (-1)\cdot(a)\cdot(-1)\cdot (b) \\
+            &= (-a)\cdot(-b) \\
+            &= |a| \cdot |b| \text{ by Rudin Def. 1.32 } 
+        \end{align*}
+
+        Case 3: Assume $a \geq 0$ and $b < 0$. Then we know that $a\cdot b \leq 0$. Thus:
+        \begin{align*}
+            |a \cdot b| &= (-1) \cdot a \cdot b \text{ by Rudin Def. 1.32 } \\
+            &= (a)\cdot(-1)\cdot (b) \\
+            &= (a)\cdot(-b) \\
+            &= |a| \cdot |b| \text{ by Rudin Def. 1.32 } 
+        \end{align*}
+
+        Case 4: Assume $a < 0$ and $b \geq 0$. This case is the same as Case 3 where $a$ and $b$ are swapped. Thus:
+        \begin{align*}
+            |a \cdot b| &= |a| \cdot |b| \text{ by Case 3.}
+        \end{align*}
+    \end{proof}
+\end{lemma}
+\begin{lemma}
+    For all $a,b\in\mathbb{R}$, $\left| |a| - |b| \right| \leq |a - b|$.
+    \begin{proof}
+        By triangle inequality we have:
+        \begin{align*}
+            |a| &= |a - 0| \\
+            &\leq |a - b| + |b - 0| \\
+            &= |a - b| + |b| 
+        \end{align*}
+        On rearranging, we see that:
+        \begin{align*}
+            |a| - |b| &\leq |a - b| \\
+            ||a| - |b|| &\leq ||a - b|| \\
+            ||a| - |b|| &\leq |a - b| \text{ since } |a - b| \geq 0
+            \text{ and by Rudin Def. 1.32 }\\
+        \end{align*}
+    \end{proof}
+\end{lemma}
+\begin{lemma} 
+    The following sequence $(x_n)$ converges to $x = 1$:
+    \[
+        x_n = 1 + \frac{1}{n}    
+    \]
+    \begin{proof}
+        Fix an $\epsilon > 0$. Now, by the archimedian principle, choose a natural number $N$ such that:
+        \[
+            \epsilon\cdot N > 1    
+        \]
+        Suppose $n$ is a natural number and $n \geq N$. Then:
+        \begin{align*}
+            \epsilon\cdot N &> 1 \\
+            \epsilon &> \frac{1}{N} \\
+            &\geq \frac{1}{n} \\
+            &= \frac{1}{n} + 1 - 1 \\
+            &= \left| \left(\frac{1}{n} + 1\right) - 1 \right| \\
+            &= \left| 1 - \left(\frac{1}{n} + 1\right) \right| \\
+            &= d(x_n, 1)
+        \end{align*}
+        So $(x_n) \to 1$.
+    \end{proof}
+\end{lemma}
+\newpage
+\begin{enumerate}[1.]
+\item Give a clean analysis proof (using the $\epsilon,N$-definition of a limit) to show that the following sequence converges in $(\mathbb{R},d_{\infty})$:
+\[ x_n = \frac{2n^2+3n-1}{7n^2+8n+3}. \]
+%-------------- Problem 1 -------------------
+
 Consider the following sequences and the values to which they converge:
 \begin{align}
     x_n &= 2 &\text{ converges to } x = 2 \text{ by Lemma 1}\\
@@ -106,9 +185,51 @@ Thus:
 \item  If a sequence $(x_n)$ in $\mathbb{R}$ converges, prove that the sequence $(|x_n|)$ also converges. Determine, with proof, if the convergence of $(|x_n|)$ guarantees that the sequence $(x_n)$ converges.
 %-------------- Problem 2 -------------------
 
+\begin{theorem} If $(x_n)$ converges, $(|x_n|)$ converges.
+    \begin{proof}
+        Note: Since $(x_n)$ is a seqence of reals, and $(x_n)$ converges, by Rudin Thm. 3.11a, $(x_n)$ must be Cauchy. Thus,
+        for all $\epsilon > 0$, there exists a natural number $N$ such that 
+        \[
+            \text{ for all } m,n \geq N, \text{ } d(x_n, x_m) < \epsilon.
+        \]
+        Since we are working with the usual metric, for all $m,n \geq N$:
+        \begin{align*}
+            |x_n - x_m| &< \epsilon \\
+            ||x_n| - |x_m|| &\leq \text{ by Lemma 3}. \\
+            d(|x_n|,|x_m|) &\leq
+        \end{align*}
+        So we see that for all $\epsilon > 0$, there exists a natural number $N$ such that
+        \[
+            \text{ for all } m,n \geq N, \text{ } d(|x_n|, |x_m|) < \epsilon.
+        \]
+        Therefore, the sequence $(|x_n|)$ is Cauchy. \\
+        Since $(|x_n|)$ is a sequence of reals,
+        by Rudin Thm. 3.11c, $(|x_n|)$ converges.
+    \end{proof}
+\end{theorem}
 
+\begin{theorem} The statement "the convergence of $(|x_n|)$ guarantees that the sequence $(x_n)$ converges" is false.
+    \begin{proof}
+        In order to show that the above statement is false, we aim to show that there exists a sequence
+        $(x_n)$ such that $(|x_n|)$ converges, but $(x_n)$ does not converge. \\
+        
+        Consider the following sequence:
+        \[
+            x_n = (-1)^n\cdot \left(1 + \frac{1}{n} \right)    
+        \]
+        From the class notes on Sequences, this sequence diverges. However, consider the sequence $(|x_n|)$ where:
+        \begin{align*}
+            |x_n| &= \left|(-1)^n\cdot \left(1 + \frac{1}{n} \right)\right| \\
+            &= |(-1)^n|\cdot \left|\left(1 + \frac{1}{n} \right)\right| \text{ by Lemma 2 } \\
+            &= (1) \cdot \left|\left(1 + \frac{1}{n} \right)\right| \\
+            &= \left|\left(1 + \frac{1}{n} \right)\right| \\
+            &= 1 + \frac{1}{n}
+        \end{align*}
+        By Lemma 4, $(|x_n|)$ converges to $x = 1$.
 
-
+        Thus, we have found a sequence $(x_n)$ such that $(|x_n|)$ converges, but $(x_n)$ does not converge.
+    \end{proof}
+\end{theorem}
 
 \newpage
 \item Suppose that $(x_n)$ is a Cauchy sequence in a metric space $(X,d)$. Further suppose that a subsequence $(x_{n_k})$ converges to a point $x \in X$. Prove that $x_n \xrightarrow{n \to \infty} x$.
