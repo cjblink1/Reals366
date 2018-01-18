@@ -18,7 +18,7 @@
 
 \def\name{Connor Boyle} %your name goes here
 \def\CM{2239} %your cm goes here
-\def\hwnum{5} %homework number goes here
+\def\hwnum{1} %homework number goes here
 
 %these packages create the footer and page numbering
 
@@ -30,7 +30,7 @@
 
 \pagestyle{fancy}
 \lhead{\name}
-\chead{MA 366: Homework Set \hwnum}
+\chead{MA 366: Exam \hwnum}
 \rhead{\CM}
 \fancyfoot[C]{\footnotesize Page \thepage\ of \pageref{LastPage}}
 
@@ -45,20 +45,97 @@
 \thispagestyle{firststyle}
 \begin{tabular}{l}
 {\LARGE \textbf{MA 366: Real Analysis} }\\
-{\Large Homework Set \hwnum}
+{\Large Exam \hwnum}
 \end{tabular} \hfill \begin{tabular}{r}
                         \name \\
                         \CM
                         \end{tabular}
 
 \noindent \hrulefill \\\\
-First, here are some useful lemmas:
-%------------ Lemmas -------------------
-
 \begin{enumerate}[1.]
 \item Find, and give a clean $\varepsilon$--$N$ proof for, the limit of $\displaystyle  q_n=\frac{2n^2+3n}{7n^2-13}$ as $n \to \infty$.
 %-------------- Problem 1 -------------------
-
+\begin{lemma}
+	For $n \geq 26$, $22n \geq 21n + 26$.
+	\begin{proof}
+		Consider:
+		\begin{align*}
+			n &\geq 26 \\
+			21n + n &\geq 21n + 26 \\
+			22n &\geq 21n + 26
+		\end{align*}
+	\end{proof}
+\end{lemma}
+\begin{lemma}
+	For $n\geq 2$, $22n^2 \leq 49n^2 - 91$.
+	\begin{proof}
+		Consider:
+		\begin{align*}
+			n &\geq 2 \\
+			n^2 &\geq 4 \\
+			27n^2 &\geq 108 \\
+			-27n^2 &\leq -108 \\
+			-27n^2 &\leq -91 \\
+			49n^2 -27n^2 &\leq 49n^2 -91 \\
+			22n^2 &\leq 49n^2 -91
+		\end{align*}
+	\end{proof}
+\end{lemma}
+\begin{lemma}
+	For $n\geq 2$, 
+	\[
+		\frac{21n + 26}{49n^2 -91} > 0	
+	\]
+	\begin{proof}
+		Consider:
+		\begin{align*}
+			n &\geq 2 \\
+			n &> -2 \\
+			13n &> -26 \\
+			21n &> -26 \\
+			21n + 26 &> 0
+		\end{align*}
+		Also consider:
+		\begin{align*}
+			n &\geq 2 \\
+			n^2 &\geq 4 \\
+			n^2 &> 2 \\
+			49n^2 &> 98 \\
+			49n^2 &> 91 \\
+			49n^2 -91 &> 0
+		\end{align*}
+		Since 
+		\[
+			x > 0 \text{ and } y > 0 \implies \frac{x}{y} > 0	
+		\]
+		Then for $n \geq 2$,
+		\[
+			\frac{21n + 26}{49n^2 -91} > 0	
+		\]
+	\end{proof}
+\end{lemma}
+\begin{theorem}
+	$\lim_{n \to \infty} \frac{2n^2+3n}{7n^2-13} = \frac{2}{7}$.
+	\begin{proof}
+		Fix an $\epsilon > 0$. Now, by the archimedian principle, choose a natural number $N$ such that
+		\[
+			N\cdot\epsilon > 1 \text{ and } N \geq\max\{2,2,26\} = 26
+		\]
+		Suppose that $n \geq N$. Then:
+		\begin{align*}
+			\frac{1}{N} &< \epsilon \\
+			\frac{1}{n} &< \\
+			\frac{22n}{22n^2} &= \\
+			\frac{21n + 26}{22n^2} &< \text{ by Lemma 1 }\\ 
+			\frac{21n + 26}{49n^2 - 91} &< \text{ by Lemma 2 } \\
+			\left|\frac{21n + 26}{49n^2 - 91}\right| &= \text{ by Lemma 3 }\\
+			\left|\frac{14n^2 + 21n - 14n^2 + 26}{49n^2 - 91}\right| &= \\
+			\left|\frac{14n^2 + 21n}{49n^2 - 91} - \frac{14n^2 - 26}{49n^2 - 91}\right| &= \\
+			\left|\frac{2n^2 + 3n}{7n^2 - 13} - \frac{2}{7}\right| &= \\
+			d\left(q_n, \frac{2}{7}\right) &=
+		\end{align*}
+	\end{proof}
+\end{theorem}
 
 \newpage
 
@@ -76,6 +153,175 @@ First, here are some useful lemmas:
 Note: We interpret $\sup E = \infty$ to mean that $E$ is an unbounded set.
 \end{enumerate}
 %-------------- Problem 2 -------------------
+\begin{lemma}
+	\[
+		\frac{5n - 2}{2n} < \frac{5}{2}, n \in \mathbb{N}	
+	\]
+	\begin{proof}
+		Consider:
+		\begin{align*}
+			\frac{5n - 2}{2n} &= \frac{5n}{2n} - \frac{2}{2n} \\
+			&= \frac{5}{2} - \frac{1}{n} \\
+			&< \frac{5}{2} \text { since } \frac{1}{n} > 0 \text{ for all } n\in \mathbb{N}.
+		\end{align*}
+	\end{proof}
+\end{lemma}
+\begin{lemma}
+	If $n\cdot \epsilon > 1$, then
+	\[
+		\frac{5n - 2}{2n} > \frac{5}{2} - \epsilon, n \in \mathbb{N}	
+	\]
+	\begin{proof}
+		Consider:
+		\begin{align*}
+			\frac{5n - 2}{2n} &= \frac{5n}{2n} - \frac{2}{2n} \\
+			&= \frac{5}{2} - \frac{1}{n} \\
+			&> \frac{5}{2} - \epsilon \text { since } \frac{1}{n} < \epsilon.
+		\end{align*}
+	\end{proof}
+\end{lemma}
+\begin{lemma}
+	\[
+		\frac{5n - 2}{2n} \in A \text{ for all } n \in \mathbb{N}
+	\]
+	\begin{proof}
+		Note: if $m/n \in A$, then $2m < 5n$.\\
+		Consider:
+		\begin{align*}
+			2(5n - 2) &= 10n - 4 \\
+			&< 10n \\
+			&= 5(2n)
+		\end{align*}
+		Thus, 
+		\[
+			\frac{5n - 2}{2n} \in A \text{ for all } n \in \mathbb{N}
+		\]
+	\end{proof}
+\end{lemma}
+\begin{lemma}
+	\[
+		\frac{1}{n} \in A \text{ for all } n \in \mathbb{N}	
+	\]
+	\begin{proof}
+		Note: if $m/n \in A$, then $2m < 5n$.\\
+		Consider:
+		\begin{align*}
+			2(1) &= 2 \\
+			&< 5 \\
+			&= 5(1) \\
+			&\leq 5(n) \text{ for all } n \in \mathbb{N}.
+		\end{align*}
+	\end{proof}
+\end{lemma}
+\newpage
+\begin{theorem}
+	$\sup(A) = \frac{5}{2}$
+	\begin{proof}
+		First, we aim to show that $\frac{5}{2}$ is an upper bound for $A$. Consider
+		any arbitrary element $\frac{m}{n} \in A$. We know that:
+		\begin{align*}
+			2m &< 5n \\
+			\frac{2m}{n} &< 5 \\
+			\frac{m}{n} &< \frac{5}{2} \\
+		\end{align*}
+		Thus, by the definition of order of $\mathbb{Q}$, $\frac{5}{2}$ is an upper bound of $A$.
+		It remains to show that $\frac{5}{2}$ is the least upper bound of $A$. Let $\epsilon > 0$. 
+		Then by the archimedian principle, choose an $n\in N$ such that $n\cdot\epsilon > 1$.
+		Consider the following $\beta_n \in\mathbb{Q}$:
+		\[
+			\beta_n = \frac{5n - 2}{2n}
+		\]
+		By Lemma 5 and Lemma 6, we know that:
+		\[
+			\frac{5}{2} - \epsilon < \beta_n < \frac{5}{2}
+		\]
+		and by Lemma 7, we know that $\beta_n \in A$.
+		Thus, we see that $\frac{5}{2}$ is the least upper bound of $A$.
+	\end{proof}
+\end{theorem}
+\begin{theorem}
+	$\inf(A) = 0$
+	\begin{proof}
+		First, we aim to show that $0$ is a lower bound for $A$. Consider any arbitrary element
+		$\frac{m}{n}\in A$. We know that:
+		\begin{align*}
+			0 &< m \text{ since } m \in \mathbb{N}\\
+			0 &< \frac{m}{n} \text{ since } n \in \mathbb{N} \\
+		\end{align*}
+		Thus, by definition of order of $\mathbb{Q}$, $0$ is a lower bound of $A$. It remains to show that
+		$0$ is the greatest lower bound of $A$. Let $\epsilon > 0$. Then, by the archimedian principle,
+		choose an $n\in\mathbb{N}$ such that $n\cdot\epsilon > 1$. Consider the following $\gamma_n \in \mathbb{Q}$:
+		\[
+			\gamma_n = \frac{1}{n}
+		\]
+		We see that 
+		\[
+			0 < \frac{1}{n} < \epsilon \text{ by construction, }	
+		\]
+		and that $\gamma_n \in A$ by Lemma 8. Hence, $0$ is the greatest lower bound of $A$.
+	\end{proof}
+\end{theorem}
+\begin{theorem}
+	If $\inf(B) > 0$, then 
+	\[
+		\sup\left(\frac{1}{B}\right) = \frac{1}{\inf(B)}
+	\]
+	\begin{proof}
+		Note: By assumption, $B$ is non-empty. \\
+		Let $\inf(B) = \beta > 0$.We aim to show that 
+		\[
+			\sup\left(\frac{1}{B}\right) = \frac{1}{\beta}.	
+		\]
+		Consider any element $x \in B$ and its corresponding element $y = \frac{1}{x} \in \frac{1}{B}$. We know that 
+		\begin{align*}
+			\beta &\leq x \text{ by definition of infimum } \\
+			\frac{\beta}{x} &\leq 1 \text{ since } x \in B \subset \mathbb{R^+} \\
+			\frac{1}{x} &\leq \frac{1}{\beta} \text{ since } \beta > 0 \\
+			y &\leq \frac{1}{\beta} \text{ for all } x \in B
+		\end{align*}
+		Thus, $\frac{1}{\beta}$ is an upper bound for $\frac{1}{B}$.
+		It remains to show that $\frac{1}{\beta}$ is the least upper bound of $\frac{1}{B}$.
+		Note: $\beta$ is the greatest lower bound of $B$. Therefore, for any $\epsilon > 0$, there exists an
+		$\alpha \in B$ such that
+		\[
+			\beta \leq \alpha < \beta + \epsilon	
+		\]
+		As such, fix $\epsilon > 0$. Then:
+		\begin{align*}
+			\beta &\leq \alpha < \beta + \epsilon \\
+			\frac{1}{\beta + \epsilon} &< \frac{1}{\alpha} \leq \frac{1}{\beta} \\
+			\frac{1}{\beta} - \frac{\epsilon}{\beta^2 + \epsilon\beta} &= \\
+		\end{align*}
+		Thus, by choosing $\epsilon$ arbitrarily close to zero, we can assert that there exists
+		$\frac{1}{\alpha} \in B$ such that:
+		\[
+			\frac{1}{\beta} - \frac{\epsilon}{\beta^2 + \epsilon\beta} < \frac{1}{\alpha} \leq \frac{1}{\beta}.
+		\]
+		It follows that $\frac{1}{\beta}$ is the least upper bound of $\frac{1}{B}$.
+	\end{proof}
+\end{theorem}
+\begin{theorem}
+	If $\inf(B) = 0$, then 
+	\[
+		\sup\left(\frac{1}{B}\right) = +\infty \text{ (i.e. $\frac{1}{B}$ is not bounded above) }
+	\]
+	\begin{proof}
+		Note: since $\inf(B) = 0$ and $B \subseteq \mathbb{R^+}$, for all $\epsilon > 0$, there are infinitely many $\alpha_n \in B$ such that
+		\[
+			\epsilon > \alpha_1 > \alpha_2 > ... > 0
+		\]
+		Fix $\epsilon > 0$. Then:
+		\begin{align*}
+			\epsilon > \alpha_1 > &\alpha_2 > ... > 0 \\
+			\frac{1}{\epsilon} < \frac{1}{\alpha_1} < &\frac{1}{\alpha_2} < ... < \frac{1}{0} = +\infty \\
+		\end{align*}
+		So we have shown that for every $\frac{1}{\alpha_n} \in \frac{1}{B}$, there exists a $\frac{1}{\alpha_{n+1}} \in \frac{1}{B}$ such that
+		\[
+			\frac{1}{\alpha_n} < \frac{1}{\alpha_{n+1}}
+		\]
+		Therefore, $\frac{1}{B}$ is not bounded above.
+	\end{proof}
+\end{theorem}
 
 \newpage
 \item Consider the following metric on $\mathbb R$
@@ -84,6 +330,53 @@ Prove that: $U$ is an open set in $\mathbb R$ with the metric $d$ if and only if
 set in $\mathbb R$ with the Archimedean metric $d_{\infty}(x,y)=|x-y|$. You have already proven in your homework that $d$ is a metric, you do \textbf{not} need to repeat that here.
 
 %-------------- Problem 3 -------------------
+\begin{lemma}
+	If $a \geq 0$, then 
+	\[
+		\frac{a}{1+a} \leq a
+	\]
+	\begin{proof}
+		Consider:
+		\begin{align*}
+			a &\geq 0 \\
+			a^2 &\geq 0 \\
+			a + a^2 &\geq a \\
+			a(1 + a) &\geq a \\
+			a &\geq \frac{a}{1 + a} \\
+			\frac{a}{1 + a} &\leq a
+		\end{align*}
+	\end{proof}
+\end{lemma}
+\begin{theorem}
+	If $U$ is an open set in $(\mathbb{R},d_\infty)$, then $U$ is an open set in $(\mathbb{R},d)$.
+	\begin{proof}
+		We will use the notation
+		\[
+			N_{d,\epsilon}(x) \text{ to mean } \{ y: d(x, y) < \epsilon\}	
+		\]
+		Note: $U$ is an open set in $(\mathbb{R},d_\infty)$ means that for every $x \in U$ there exists an
+		$\epsilon > 0$ such that $N_{d_\infty,\epsilon}(x) \subseteq U$.
+		First, assume $U$ is an open set in $(\mathbb{R},d_\infty)$. Then pick an arbitrary $x \in U$ and fix $\epsilon > 0$ such that
+		\[
+			N_{d_\infty,\epsilon}(x) \subseteq U
+		\]
+		Take any element $y \in N_{d_\infty,\epsilon}(x)$. Then
+		\[
+			|x - y| < \epsilon	
+		\]
+		But we know from Lemma 13 that
+		\[
+			\frac{|x - y|}{1 + |x - y|} \leq |x - y|
+		\]
+		So 
+		\begin{align*}
+			\frac{|x - y|}{1 + |x - y|} < \epsilon \\
+			y \in N_{d,\epsilon}(x)
+		\end{align*}
+		Thus, $N_{d,\epsilon}(x) \subseteq N_{d_\infty,\epsilon}(x) \subseteq U$. So 
+		By universal generalization, $U$ is an open set in $(\mathbb{R},d)$.
+	\end{proof}
+\end{theorem}
 \newpage
 \item Suppose $f: A \to B$ is an onto map. Prove: if $B$ is uncountable, then $A$ is uncountable .
 

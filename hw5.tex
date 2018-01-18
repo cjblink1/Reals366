@@ -141,6 +141,104 @@ First, here are some useful lemmas:
         So $(x_n) \to 1$.
     \end{proof}
 \end{lemma}
+\begin{lemma} 
+    The following sequence $(x_n)$ converges to $x = 1$:
+    \[
+        x_n = 1 - \frac{1}{n}    
+    \]
+    \begin{proof}
+        Fix an $\epsilon > 0$. Now, by the archimedian principle, choose a natural number $N$ such that:
+        \[
+            \epsilon\cdot N > 1    
+        \]
+        Suppose $n$ is a natural number and $n \geq N$. Then:
+        \begin{align*}
+            \epsilon\cdot N &> 1 \\
+            \epsilon &> \frac{1}{N} \\
+            &\geq \frac{1}{n} \\
+            &= \left| -\frac{1}{n}\right| \\
+            &= \left| -\frac{1}{n} + 1 - 1\right| \\
+            &= \left| \left(1 - \frac{1}{n} \right) - 1 \right| \\
+            &= d(x_n, 1)
+        \end{align*}
+        So $(x_n) \to 1$.
+    \end{proof}
+\end{lemma}
+\begin{lemma}
+    Claim:
+    \[
+        \limsup_{n \to \infty} \left((-1)^n \cdot \left( 1 - \frac{2}{n} \right) \right) = 1.
+    \]
+    \begin{proof}
+       Let 
+       \[
+            x_n = (-1)^n \cdot \left( 1 - \frac{2}{n} \right).
+       \]
+       Consider the even subsequence: 
+       \[
+            x_{2n} = 1 - \frac{2}{2n} = 1 - \frac{1}{n}.
+       \]
+       We know that this subsequence converges to $1$ from Lemma 5.
+       Now, pick any $x > 1$ and choose $N = 2$. For all $n \geq N$, we see that
+       \begin{align*}
+            x - x_n &= x - (-1)^n \cdot \left( 1 - \frac{2}{n} \right) \\
+            &\geq x - \left( 1 - \frac{2}{n} \right) \\
+            &> 1 - \left( 1 - \frac{2}{n} \right) \\
+            &= \frac{2}{n} \\
+            &> 0
+       \end{align*}
+       Thus, $x_n < x$. By Rudin Thm. 3.17,  $\limsup_{n \to \infty} \left(x_n\right) = 1$
+    \end{proof}
+\end{lemma}
+\begin{lemma} 
+    The following sequence $(x_n)$ converges to $x = 1$:
+    \[
+        x_n = 1 - \frac{2}{2n + 1}    
+    \]
+    \begin{proof}
+        Fix an $\epsilon > 0$. Now, by the archimedian principle, choose a natural number $N$ such that:
+        \[
+            \epsilon \cdot (2N + 1) > 2
+        \]
+        Suppose $n$ is a natural number and $n \geq N$. Then:
+        \begin{align*}
+            \epsilon \cdot (2N + 1) &> 2 \\
+            \epsilon &> \frac{2}{2N + 1} \\
+            &\geq \frac{2}{2n + 1} \\
+            &= \left| -\frac{2}{2n + 1} \right| \\
+            &= \left| -\frac{2}{2n + 1} + 1 - 1\right| \\
+            &= \left|\left(1  -\frac{2}{2n + 1}\right) - 1\right| \\
+            &= d(x_n, 1)
+        \end{align*}
+        So $(x_n) \to 1$.
+    \end{proof}
+\end{lemma}
+\begin{lemma}
+    Claim:
+    \[
+        \limsup_{n \to \infty} \left((-1)^{n+1} \cdot \left( 1 - \frac{2}{n} \right) \right) = 1.
+    \]
+    \begin{proof}
+       Let 
+       \[
+            x_n = (-1)^{n+1} \cdot \left( 1 - \frac{2}{n} \right).
+       \]
+       Consider the odd subsequence: 
+       \[
+            x_{2n + 1} = 1 - \frac{2}{2n + 1} .
+       \]
+       We know that this subsequence converges to $1$ from Lemma 7.
+       Now, pick any $x > 1$ and choose $N = 2$. For all $n \geq N$, we see that
+       \begin{align*}
+            x - x_n &= x - (-1)^n \cdot \left( 1 - \frac{2}{n} \right) \\
+            &\geq x - \left( 1 - \frac{2}{n} \right) \\
+            &> 1 - \left( 1 - \frac{2}{n} \right) \\
+            &= \frac{2}{n} \\
+            &> 0
+       \end{align*}
+       Thus, $x_n < x$. By Rudin Thm. 3.17,  $\limsup_{n \to \infty} \left(x_n\right) = 1$
+    \end{proof}
+\end{lemma}
 \newpage
 \begin{enumerate}[1.]
 \item Give a clean analysis proof (using the $\epsilon,N$-definition of a limit) to show that the following sequence converges in $(\mathbb{R},d_{\infty})$:
@@ -234,11 +332,66 @@ Thus:
 \newpage
 \item Suppose that $(x_n)$ is a Cauchy sequence in a metric space $(X,d)$. Further suppose that a subsequence $(x_{n_k})$ converges to a point $x \in X$. Prove that $x_n \xrightarrow{n \to \infty} x$.
 %-------------- Problem 3 -------------------
+\begin{theorem} If $(x_n)$ is a Cauchy sequence, and a subsequence $(x_{n_k})$ converges to a point $x \in X$, then $x_n \xrightarrow{n \to \infty} x$.
+    \begin{proof}
+        Note: since $(x_{n_k})$ converges, then for any $\epsilon > 0$, there exists a natural number $N_1$ such that for all
+        $n_k \geq N_1$, 
+        \[
+            d(x_{n_k}, x) < \frac{\epsilon}{2}.
+        \]
+        Also note: since $(x_n)$ is Cauchy, then for any $\epsilon > 0$, there exists a natural number $N_2$ such that for all
+        $n,m \geq N_2$, 
+        \[
+            d(x_n, x_m) < \frac{\epsilon}{2}.
+        \]
+        So fix an $\epsilon > 0$. Then let $N = \max \{N_1, N_2\}$. By the triangle inequality, for all $n, n_k \geq N$:
+        \begin{align*}
+            d(x_n, x) &\leq d(x_n, x_{n_k}) + d(x_{n_k}, x) \\
+            &< \frac{\epsilon}{2} + \frac{\epsilon}{2} \\
+            &< \epsilon
+        \end{align*}
+        So by defnition of convergence, $x_n \xrightarrow{n \to \infty} x$. 
+    \end{proof}
+\end{theorem}
 \newpage
 \item Suppose that $(x_n)$ and $(y_n)$ are Cauchy sequences in a metric space $(X,d)$. Let $(r_n)$ be the sequence of real numbers defined by
 \[ r_n = d(x_n, y_n). \]
 Show that $(r_n)$ converges.
 %-------------- Problem 4 -------------------
+\begin{theorem} Claim: $(r_n)$ converges.
+    \begin{proof}
+        Note: since $(x_n)$ is Cauchy, then for any $\epsilon > 0$, there exists a natural number $N_x$ such that
+        for all $n,m \geq N_x$:
+        \[
+            d(x_n, x_m) < \frac{\epsilon}{2}
+        \]
+        Similarly note: since $(y_n)$ is Cauchy, then for any $\epsilon > 0$, there exists a natural number $N_y$ such that
+        for all $k,l \geq N_y$:
+        \[
+            d(y_k, y_l) < \frac{\epsilon}{2}
+        \]
+        Finally note: $(X,d)$ is a metric space, so let $N = \max \{N_x, N_y\}$, and $p,q \geq N$. Then:
+        \begin{align*}
+            r_p = d(x_p, y_p) &\leq d(x_p, x_q) + d(x_q, y_q) + d(y_q, y_p) \\
+            &< \frac{\epsilon}{2} + r_q + \frac{\epsilon}{2} \\
+            &= \epsilon + r_q
+        \end{align*}
+        Fix an $\epsilon > 0$. Let $N = \max \{N_x, N_y\}$, and choose $p,q \geq N$ such that $r_p \geq r_q$. Then we know that:
+        \begin{align*}
+            r_p &< \epsilon + r_q \\
+            r_p - r_q &< \epsilon \\
+            |r_p - r_q| &< \epsilon \\
+            d(r_p, r_q) &< \epsilon
+            % d(r_p, r_q) &= |r_p - r_q| \\
+            % &= |d(x_p, y_p) - d(x_q, y_q)| \\
+            % &\leq |d(x_p, x_q) + d(x_q, y_q) + d(y_q, y_p) - d(x_q, y_q)| \\
+            % &= |d(x_p, x_q) + d(y_q, y_p) + d(x_q, y_q) - d(x_q, y_q)| \\
+            % &= d(x_p, x_q) + d(y_q, y_p) + 0
+        \end{align*}
+        Thus, $(r_n)$ is Cauchy. Since $(r_n)$ is a sequence of real numbers and $(r_n)$ is Cauchy, 
+        by Rudin Thm 3.11x, $(r_n)$ converges.
+    \end{proof}
+\end{theorem}
 \newpage
 \item Let $(x_n)$ and $(y_n)$ be sequences of real numbers.
 \begin{enumerate}[(a)]
@@ -249,6 +402,46 @@ assuming that the right hand side is not in the indeterminant form $\infty-\inft
 \[ \limsup_{n \to \infty} (x_n+y_n) < \limsup_{n \to \infty} x_n + \limsup_{n \to \infty} y_n.\]
 \end{enumerate}
 %-------------- Problem 5 -------------------
+\begin{theorem}
+    \[ \limsup_{n \to \infty} (x_n+y_n) \leq \limsup_{n \to \infty} x_n + \limsup_{n \to \infty} y_n, \]
+    assuming that the right hand side is not in the indeterminant form $\infty-\infty$.
+    \begin{proof}
+        Consider the sequence $(x_n + y_n)$. By Rudin Thm 3.6, $(x_n + y_n)$ contains a
+        convergent subsequence, say $(x_{n_k} + y_{n_k})$ which converges to $\limsup_{n \to \infty} (x_n+y_n)$.
+        Now, since $(x_{n_k})$ is a sequence of reals, it must also contain a convergent subsequence $(x_{n_{k_a}})$ which converges to some value $x\in\mathbb{R}$.
+        Further, since $(y_{n_{k_a}})$ is a sequence of reals, it also has a convergent subsequence $(y_{n_{k_{a_b}}})$ which converges to some value $y \in \mathbb{R}$.
+        So let:
+        \begin{align*}
+            (x_{n_{k_{a_b}}} + y_{n_{k_{a_b}}}) \text{ be the subsequence of } (x_{n} + y_{n}) \text{ which converges to } \limsup_{n \to \infty} (x_n+y_n).
+        \end{align*}
+        As such, since $x$ and $y$ are subsequential limits of $(x_n)$ and $(y_n)$ respectively,
+        \begin{align*}
+            \limsup_{n \to \infty} (x_n+y_n) &= x + y \\
+            &\leq \limsup_{n \to \infty} x_n + \limsup_{n \to \infty} y_n
+        \end{align*}
+
+    \end{proof}
+\end{theorem}
+For part (b), consider the following sequences $(x_n)$ and $(y_n)$:
+\begin{align*}
+    x_n &= (-1)^n \cdot \left( 1 - \frac{2}{n} \right) \\
+    y_n &= (-1)^{n + 1} \cdot \left( 1 - \frac{2}{n} \right)
+\end{align*}
+From Lemma 6 and Lemma 8, we know that the $\limsup_{n \to \infty} x_n$ = 1 and the  $\limsup_{n \to \infty} y_n$ = 1. Now consider the sequence
+$(x_n + y_n)$:
+\begin{align*}
+    x_n + y_n &= (-1)^n \cdot \left( 1 - \frac{2}{n} \right) + (-1)^{n + 1} \cdot \left( 1 - \frac{2}{n} \right) \\
+    &= (-1)^n \cdot \left( 1 - \frac{2}{n} + (-1) \cdot \left(1 - \frac{2}{n}\right)\right) \\
+    &= (-1)^n \cdot 0 \\
+    &= 0
+\end{align*}
+$(x_n + y_n)$ is the constant sequence $0$, which converges to $x + y = 0$, by Lemma 1. Thus, by
+Rudin Example 3.18c, $\limsup_{n \to \infty} (x_n + y_n) = 0$.
+We see that 
+\begin{align*}
+    0 &< 1 + 1 \\
+    \limsup_{n \to \infty} (x_n + y_n) &<  \limsup_{n \to \infty} x_n + \limsup_{n \to \infty} y_n   
+\end{align*}
 \newpage
 \item  Let $X$ be the set of sequences $\mathbf{x} = (x_n)$ where for all $n \in \mathbb{N}$ we have $x_n \in \{0,1\}$. If $\mathbf{x},\mathbf{y} \in X$ such that $\mathbf{x} \neq \mathbf{y}$, then let
 \[ v(\mathbf{x},\mathbf{y}) = \min\{ n \in \mathbb{N}: x_n \neq y_n \}.\]
