@@ -330,6 +330,10 @@ Prove that: $U$ is an open set in $\mathbb R$ with the metric $d$ if and only if
 set in $\mathbb R$ with the Archimedean metric $d_{\infty}(x,y)=|x-y|$. You have already proven in your homework that $d$ is a metric, you do \textbf{not} need to repeat that here.
 
 %-------------- Problem 3 -------------------
+We will use the notation
+		\[
+			N_{d,\epsilon}(x) \text{ to mean } \{ y: d(x, y) < \epsilon\}	
+		\]
 \begin{lemma}
 	If $a \geq 0$, then 
 	\[
@@ -347,40 +351,170 @@ set in $\mathbb R$ with the Archimedean metric $d_{\infty}(x,y)=|x-y|$. You have
 		\end{align*}
 	\end{proof}
 \end{lemma}
+\begin{lemma}
+	\[
+		N_{d_\infty,\epsilon}(x) \subseteq N_{d,\epsilon}(x)	
+	\]
+	\begin{proof}
+		Let $y \in N_{d_\infty,\epsilon}(x)$. Then
+		\[
+			|x - y| < \epsilon	
+		\]
+		But we know from Lemma 13 that
+		\[
+			\frac{|x - y|}{1 + |x - y|} \leq |x - y|	
+		\]
+		So
+		\begin{align*}
+			\frac{|x - y|}{1 + |x - y|} < \epsilon \\
+			y \in N_{d,\epsilon}(x)
+		\end{align*}
+	\end{proof}
+\end{lemma}
+\begin{lemma}
+	\[
+		N_{d,\epsilon'}(x) \subseteq N_{d_\infty, \epsilon}(x) \text { where } \epsilon' = \frac{\epsilon}{1 + \epsilon}.	
+	\]
+	\begin{proof}
+		Let $y \in N_{d,\epsilon'}(x)$. Then
+		\begin{align*}
+			\frac{|x - y|}{1 + |x - y|} &< \frac{\epsilon}{1 + \epsilon} = \epsilon' \\
+			|x - y|\cdot(1 + \epsilon) &< (1 + |x - y|)\cdot \epsilon \\
+			|x - y| + |x - y|\cdot \epsilon &< \epsilon + |x - y|\cdot \epsilon \\
+			|x - y| &< \epsilon
+		\end{align*}
+		Thus, $y \in N_{d_\infty, \epsilon}(x)$.
+	\end{proof}
+\end{lemma}
+\newpage
+% \begin{theorem}
+% 	If $U$ is an open set in $(\mathbb{R},d)$, then $U$ is an open set in $(\mathbb{R},d_\infty)$.
+% 	\begin{proof}
+% 		We will use the notation
+% 		\[
+% 			N_{d,\epsilon}(x) \text{ to mean } \{ y: d(x, y) < \epsilon\}	
+% 		\]
+% 		Note: $U$ is an open set in $(\mathbb{R},d)$ means that for every $x \in U$ there exists an
+% 		$\epsilon > 0$ such that $N_{d,\epsilon}(x) \subseteq U$.
+% 		First, assume $U$ is an open set in $(\mathbb{R},d)$. Then pick an arbitrary $x \in U$ and fix $\epsilon > 0$ such that
+% 		\[
+% 			N_{d,\epsilon}(x) \subseteq U
+% 		\]
+% 		Take any element $y \in N_{d,\epsilon}(x)$. Then
+% 		\[
+% 			\frac{|x - y|}{1 + |x - y|} < \epsilon	
+% 		\]
+% 		But we know from Lemma 13 that
+% 		\[
+% 			\frac{|x - y|}{1 + |x - y|} \leq |x - y|
+% 		\]
+% 		So 
+% 		\begin{align*}
+% 			\frac{|x - y|}{1 + |x - y|} < \epsilon \\
+% 			y \in N_{d,\epsilon}(x)
+% 		\end{align*}
+% 		Thus, $N_{d_\infty,\epsilon}(x) \subseteq N_{d,\epsilon}(x) \subseteq U$. So 
+% 		By universal generalization, $U$ is an open set in $(\mathbb{R},d)$.
+% 	\end{proof}
+% \end{theorem}
 \begin{theorem}
 	If $U$ is an open set in $(\mathbb{R},d_\infty)$, then $U$ is an open set in $(\mathbb{R},d)$.
 	\begin{proof}
-		We will use the notation
-		\[
-			N_{d,\epsilon}(x) \text{ to mean } \{ y: d(x, y) < \epsilon\}	
-		\]
 		Note: $U$ is an open set in $(\mathbb{R},d_\infty)$ means that for every $x \in U$ there exists an
 		$\epsilon > 0$ such that $N_{d_\infty,\epsilon}(x) \subseteq U$.
 		First, assume $U$ is an open set in $(\mathbb{R},d_\infty)$. Then pick an arbitrary $x \in U$ and fix $\epsilon > 0$ such that
 		\[
 			N_{d_\infty,\epsilon}(x) \subseteq U
 		\]
-		Take any element $y \in N_{d_\infty,\epsilon}(x)$. Then
+		We know from Lemma 15 that
 		\[
-			|x - y| < \epsilon	
+			N_{d,\epsilon'}(x) \subseteq N_{d_\infty,\epsilon}(x) \text{ where } \epsilon' = \frac{\epsilon}{1 + \epsilon}
 		\]
-		But we know from Lemma 13 that
-		\[
-			\frac{|x - y|}{1 + |x - y|} \leq |x - y|
-		\]
-		So 
+		So for any $\epsilon > 0$ there exists an $\epsilon' > 0$ such that
 		\begin{align*}
-			\frac{|x - y|}{1 + |x - y|} < \epsilon \\
-			y \in N_{d,\epsilon}(x)
+			N_{d,\epsilon'}(x) \subseteq N_{d_\infty,\epsilon}(x) \subseteq U \\
+			N_{d,\epsilon'}(x) \subseteq U
 		\end{align*}
-		Thus, $N_{d,\epsilon}(x) \subseteq N_{d_\infty,\epsilon}(x) \subseteq U$. So 
-		By universal generalization, $U$ is an open set in $(\mathbb{R},d)$.
+		By universal generalization, for all $x \in U$, there exists an $\epsilon' > 0$ such that 
+		\[
+			N_{d,\epsilon'}(x) \subseteq U
+		\]
+		Thus, $U$ is an open set in $(\mathbb{R},d)$.
+	\end{proof}
+\end{theorem}
+\begin{theorem}
+	If $U$ is an open set in $(\mathbb{R},d)$, then $U$ is an open set in $(\mathbb{R},d_\infty)$.
+	\begin{proof}
+		First, assume $U$ is an open set in $(\mathbb{R},d)$. Then pick an arbitrary $x \in U$ and fix $\epsilon > 0$ such that
+		\[
+			N_{d,\epsilon}(x) \subseteq U
+		\]
+		We know from Lemma 14 that
+		\[
+			N_{d_\infty,\epsilon}(x) \subseteq N_{d,\epsilon}(x)
+		\]
+		So for every $\epsilon > 0$ we see that
+		\begin{align*}
+			N_{d_\infty,\epsilon}(x) \subseteq N_{d,\epsilon}(x) \subseteq U \\
+			N_{d_\infty,\epsilon}(x) \subseteq U
+		\end{align*}
+		By universal generalization, for all $x \in U$, there exists an $\epsilon > 0$ such that 
+		\[
+			N_{d_\infty,\epsilon}(x) \subseteq U
+		\]
+		Thus, $U$ is an open set in $(\mathbb{R},d_\infty)$.
+	\end{proof}
+\end{theorem}
+\begin{theorem}
+	$U$ is an open set in $\mathbb R$ with the metric $d$ if and only if $U$ is an open
+set in $\mathbb R$ with the Archimedean metric $d_{\infty}(x,y)=|x-y|$.
+	\begin{proof}
+		This follows from Theorem 16 and Theorem 17.
 	\end{proof}
 \end{theorem}
 \newpage
 \item Suppose $f: A \to B$ is an onto map. Prove: if $B$ is uncountable, then $A$ is uncountable .
-
 %-------------- Problem 4 -------------------
+\begin{lemma}
+	If $h: X \to Y$ is injective and $Y$ is countable, then $X$ is countable.
+	\begin{proof}
+		Let the range of $h$ be $Z$. Since $Z \subseteq Y$ and $Y$ is countable, then $Z$ is at most countable (by Rudin Thm 2.8).
+		Then since $h$ is injective, every element $z \in Z$ is associated to a unique element $x \in X$ such that $h(x) = z$. Thus there is a bijection between
+		$X$ and $Z$. Since $Z$ is countable, then $X$ is countable.
+	\end{proof}
+\end{lemma}
+\begin{theorem}
+	If $B$ is uncountable, then $A$ is uncountable.
+	\begin{proof} 
+		Note: if $f$ is an onto map, then for every $b\in B$ there exists an $a \in A$ such that
+		$f(a) = b$.
+		Also note: if $A$ is countable, then there exists a bijection between $\mathbb{N}$ and $A$.
+		Consider the contrapositive statement:
+		\[
+			\emph{If $A$ is countable, then $B$ is countable}.
+		\]
+
+		Assume that $A$ is countable. 
+		Consider any $b \in B$. Then $f^{-1}(b) \subseteq A$ is at most countable and non-empty. Therefore, we can enumerate $f^{-1}(b)$
+		as follows:
+		\[
+			f^{-1}(b) = \{a_{1,b}, a_{2,b}, a_{3,b}, ... \}	
+		\]
+		Let us construct a function $g: B \to A$ defined as follows:
+		\[
+			g(b) = a_{1,b}	
+		\]
+		We must first show that $g$ is injective.
+		Consider the case where $g(b_1) = g(b_2)$ for some $b_1, b_2 \in B$. Then we know that 
+		\[
+			a_{1,b_1} = a_{1,b_2}
+		\]
+		Since $f$ is a function, $f^{-1}(b_1) \cap f^{-1}(b_2) = \phi$ (one element of the domain cannot be sent to multiple values in the range).
+		Thus, the only way for $a_{1,b_1} = a_{1,b_2}$ is if $b_1 = b_2$. Thus, $g$ is injective.
+		Finally, we see from Lemma 19 that, since $g: B \to A$ is injective and $A$ is countable,
+		then $B$ is countable.
+	\end{proof}
+\end{theorem}
 \newpage
 \item In a metric space $X$ with metric $d$, we define the ``edge of $A$" to be the set
 \[ e(A)=\{ x\in X : \forall r >0, \quad N_r(x)\cap A\neq \emptyset \quad \text{and} \quad N_r(x)\cap A^c \neq \emptyset   \}.\]
