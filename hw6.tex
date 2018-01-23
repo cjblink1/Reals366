@@ -1,0 +1,237 @@
+\documentclass{amsart}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage[headheight=12pt,textwidth=7in,top=1in, bottom=1in]{geometry}
+
+%some custom commands you may find useful
+
+\usepackage{xparse}
+\DeclareDocumentCommand{\diff}{O{} m}{
+    \frac{\mathrm{d} #1}{\mathrm{d}#2}
+    }
+\DeclareDocumentCommand{\pdiff}{O{} m}{
+    \frac{\partial #1}{\partial #2}
+    }
+\DeclareDocumentCommand{\integral}{O{} O{} m O{x}}{
+    \int_{#1}^{#2} #3\ \mathrm{d}#4
+    }
+
+\def\name{Connor Boyle} %your name goes here
+\def\CM{2239} %your cm goes here
+\def\hwnum{6} %homework number goes here
+
+%these packages create the footer and page numbering
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\pagestyle{fancy}
+\lhead{\name}
+\chead{MA 366: Homework Set \hwnum}
+\rhead{\CM}
+\fancyfoot[C]{\footnotesize Page \thepage\ of \pageref{LastPage}}
+
+\fancypagestyle{firststyle}
+{  \renewcommand{\headrulewidth}{0pt}%
+   \fancyhf{}%
+   \fancyfoot[C]{\footnotesize Page \thepage\ of \pageref{LastPage}}
+}
+
+\begin{document}
+\noindent
+\thispagestyle{firststyle}
+\begin{tabular}{l}
+{\LARGE \textbf{MA 366: Real Analysis} }\\
+{\Large Homework Set \hwnum}
+\end{tabular} \hfill \begin{tabular}{r}
+                        \name \\
+                        \CM
+                        \end{tabular}
+
+\noindent \hrulefill \\\\
+On this Homework Set, I worked with Lauren Wiseman and Josh Arroyo.\\
+First, here are some useful lemmas:
+
+\newpage
+\begin{enumerate}[1.]
+\item Determine (with proof) whether the following series converge or diverge
+\begin{enumerate}[(a)]
+\item $\displaystyle \sum_{k=1}^\infty \sqrt{k+1}-\sqrt{k}$
+\item $\displaystyle \sum_{k=1}^\infty \frac{\sqrt{k+1}-\sqrt{k}}{k}$
+\end{enumerate}
+%-------------- Problem 1 -------------------
+\begin{lemma}
+    $\displaystyle \sum_{k=1}^\infty \frac{1}{2k}$ diverges.
+    \begin{proof}
+    \end{proof}
+\end{lemma}
+\begin{lemma}
+    $\displaystyle \sum_{k=1}^\infty \frac{1}{k^{\frac{3}{2}}}$ converges.
+    \begin{proof}
+    \end{proof}
+\end{lemma}
+
+\begin{theorem}
+    $\displaystyle \sum_{k=1}^\infty \sqrt{k+1}-\sqrt{k}$ diverges.
+    \begin{proof}
+        Note: from Lemma 1, we see that
+        \[
+            \displaystyle \sum_{k=1}^\infty \frac{1}{2k} \text{ diverges}.    
+        \]
+        Let $k \geq 2$. Then consider:
+        \begin{align*}
+            \frac{1}{2k} &= \frac{1}{2\sqrt{k^2}} \\
+            &\leq \frac{1}{2\sqrt{k+1}} \\
+            &= \frac{1}{\sqrt{k+1} + \sqrt{k+1}} \\
+            &\leq \frac{1}{\sqrt{k+1} + \sqrt{k}} \\
+            &= \frac{1}{\sqrt{k+1} + \sqrt{k}} \cdot \left( \frac{\sqrt{k+1} - \sqrt{k}}{\sqrt{k+1} - \sqrt{k}} \right) \\
+            &= \sqrt{k+1} - \sqrt{k}.
+        \end{align*}
+        Thus, for all $k \geq 2$, then
+        \[
+            \frac{1}{2k} \leq \sqrt{k + 1} - \sqrt{k}
+        \]
+        By the comparison test:
+        \[
+            \sum_{k=1}^\infty \sqrt{k+1}-\sqrt{k} \text{ must also diverge.}
+        \]
+    \end{proof}
+\end{theorem}
+\begin{theorem}
+    $\displaystyle \sum_{k=1}^\infty \frac{\sqrt{k+1}-\sqrt{k}}{k}$ converges.
+    \begin{proof}
+        Note: from Lemma 2, we see that
+        \[
+            \displaystyle \sum_{k=1}^\infty \frac{1}{k^{\frac{3}{2}}} converges.
+        \]
+        Let $k \geq 1$. Then consider:
+        \begin{align*}
+            \frac{1}{k^{\frac{3}{2}}} &= \frac{1}{k\sqrt{k}} \\
+            &\geq \frac{1}{k\sqrt{k+1}} \\
+            &\geq \frac{1}{k(\sqrt{k+1} + \sqrt{k})} \\
+            &= \frac{1}{k} \cdot \frac{1}{\sqrt{k+1} + \sqrt{k}} \\
+            &= \frac{1}{k} \cdot \frac{1}{\sqrt{k+1} + \sqrt{k}} \cdot \left( \frac{\sqrt{k+1} - \sqrt{k}}{\sqrt{k+1} - \sqrt{k}} \right) \\
+            &= \frac{\sqrt{k+1} - \sqrt{k}}{k}
+        \end{align*}
+        Thus, for all $k \geq 1$, then
+        \[
+            \frac{1}{k^{\frac{3}{2}}} \geq \frac{\sqrt{k + 1} - \sqrt{k}}{k}
+        \]
+        By the comparison test:
+        \[
+            \displaystyle \sum_{k=1}^\infty \frac{\sqrt{k+1}-\sqrt{k}}{k} \text{ must also converge.}
+        \]
+    \end{proof}
+\end{theorem}
+
+\newpage
+
+\item  Let $(a_k)$ be a sequence of non-negative real numbers. Prove:   
+\[ \sum_{k=1}^{\infty} a_k < \infty \quad \Rightarrow \quad \sum_{k=1}^{\infty} \frac{\sqrt{a_k}}{k} < \infty. \]
+%-------------- Problem 2 -------------------
+\begin{lemma}
+    For any nonnegative real numbers $a$ and $b$,
+    \[
+        \sqrt{a \cdot b} \leq \max\{a,b\}    
+    \]
+    \begin{proof}
+
+    \end{proof}
+\end{lemma}
+\begin{lemma}
+    If for all $k \geq 1$, $a_k \geq 0$ and $b_k \geq 0$ and $\displaystyle \sum_{k=1}^\infty a_k$ converges and $\displaystyle \sum_{k=1}^\infty b_k$ converges, then
+    \[
+        \displaystyle \sum_{k=1}^\infty a_k + b_k \text{ converges.}
+    \]
+    \begin{proof}
+
+    \end{proof}
+\end{lemma}
+\begin{lemma}
+    If for all $k \geq 1$, $a_k \geq 0$ and $b_k \geq 0$ and $\displaystyle \sum_{k=1}^\infty a_k$ converges and $\displaystyle \sum_{k=1}^\infty b_k$ converges, then
+    \[
+        \displaystyle \sum_{k=1}^\infty \max\{a_k, b_k\} \text{ converges.}
+    \]
+    \begin{proof}
+
+    \end{proof}
+\end{lemma}
+\begin{theorem} 
+    If $(a_k)$ is a sequence of non-negative real numbers,
+    \[ \sum_{k=1}^{\infty} a_k < \infty \quad \Rightarrow \quad \sum_{k=1}^{\infty} \frac{\sqrt{a_k}}{k} < \infty. \]
+    \begin{proof}
+        Assume $\sum_{k=1}^{\infty} a_k < \infty$. Then we know that $\sum_{k=1}^{\infty} a_k < \infty$ converges.
+        We also know that $\sum_{k=1}^{\infty} \frac{1}{k^2}$ converges.
+
+        Consider the sequence 
+        \begin{align*}
+            \sum_{k=1}^{\infty} \frac{\sqrt{a_k}}{k} &= \sum_{k=1}^{\infty} \sqrt{\frac{1}{k^2} \cdot a_k } \\
+            &\leq \sum_{k=1}^{\infty} \max \left\{ \frac{1}{k^2}, a_k \right\}
+        \end{align*}
+    \end{proof}
+\end{theorem}
+
+
+
+\newpage
+\item Suppose $(a_n)$ and $(b_n)$ are sequences of positive numbers. Let $\displaystyle L= \lim_{n\to\infty}\frac{a_n}{b_n}$. Prove the following:
+\begin{enumerate}[(a)]
+\item If $0<L<\infty$, then 
+\[ \sum_{n=1}^{\infty} a_n < \infty \quad \Leftrightarrow \quad \sum_{n=1}^{\infty} b_n < \infty.\]
+\item If $L=0$, then 
+\[ \sum_{n=1}^{\infty} b_n < \infty \quad \Rightarrow \quad \sum_{n=1}^{\infty} a_n < \infty.\]
+\end{enumerate}
+%-------------- Problem 3 -------------------
+Part a: $\sum_{n=1}^{\infty} (L - \epsilon)\cdot b_n < a_n < (L + \epsilon)\cdot b_n$
+
+\newpage
+\item Suppose $(a_k)$ is a sequence of real numbers. Define the sequence $(m_k)$ where for all $k \in \mathbb{N}$ we have
+\[ m_k= \frac{a_1+a_2+\dots+ a_k}{k}.\]
+\begin{enumerate}[(a)]
+\item If $a_k \to a$, show that $m_k\to a$ as well.
+\item Make a sequence $a_k$ where $a_k$ divergent but $m_k$ converges.
+\item Show that there exists a sequence with $a_k>0$ for all $k$ with $\limsup a_k=\infty$ and $m_k\to 0.$
+\end{enumerate}
+%-------------- Problem 4 -------------------
+Part b: $a_k = \frac{1}{2} \cdot (1 - (-1)^k)$
+
+
+\newpage
+\item Let $E \subseteq \mathbb{R}$ defined by 
+\[ E = (-1,1) \cup (1,2) \cup (3,5) \cup \{6\}.\]
+Now, let $f: E \to \mathbb{R}$ be the function defined by 
+\[ f(x)=\frac{x^3-2x^2-5x+6}{x^2-4x+3},\]
+Determine the following limits or explain why they don't exist. Prove your claims with an $\varepsilon-\delta$ proof. 
+\begin{enumerate}[(a)]
+\item $\displaystyle \lim_{x\to 1} f(x)$.
+\item $\displaystyle \lim_{x\to 6} f(x)$.
+\item $\displaystyle \lim_{x\to 4} f(x)$.
+\end{enumerate}
+%-------------- Problem 5 -------------------
+
+\newpage
+\item  Let $(X,d)$ be the metric space where $X$ is any non-empty set and
+\[ d(x,y) = \begin{cases} 1 & x\neq y \\ 
+                          0 & \text{otherwise.}
+                          \end{cases}\]
+Determine which functions $f: (X,d) \rightarrow (\mathbb{R},d_{\infty})$ are continuous. 
+%-------------- Problem 6 -------------------
+\begin{theorem}
+    All functions $f: X \to \mathbb{R}$ are closed.
+    \begin{proof}
+        Note: $f: X \to \mathbb{R}$ is continuous if and only if for every closed set $V \subseteq \mathbb{R}$, $f^{-1}(V) \subseteq X$ is also closed in $X$. 
+    \end{proof}
+\end{theorem}
+\newpage
+\item  Let $f:\mathbb{R} \to \mathbb{R}$ and $a \in \mathbb{R}$ such that
+\[ \lim_{x \to a} f(x) = \alpha > 0.\]
+Show that there exists an $r>0$ such that 
+\[ 0 < |x-a|<r \quad \Rightarrow \quad f(x) > 0.\]
+%-------------- Problem 7 -------------------
+Note: pick $\alpha > \epsilon$
+
+\end{enumerate}
+\end{document} 

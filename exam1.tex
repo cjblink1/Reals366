@@ -522,8 +522,95 @@ set in $\mathbb R$ with the Archimedean metric $d_{\infty}(x,y)=|x-y|$.
 	\item (10 points) Prove that $e(A)$ is closed in $X$.
 	\item (10 points) Prove that $A$ is closed if and only if $e(A)\subset A$.
 \end{enumerate}
-
 %-------------- Problem 5 -------------------
+\begin{lemma}
+	$e(A) \subseteq \overline{A}$ where $\overline{A}$ is the closure of $A$.
+	\begin{proof}
+		Let $x \in e(A)$. Then we know that
+		\[
+			\forall r > 0, N_r(x) \cap A \neq \phi	
+		\]
+		Consider the following cases: \\
+
+		Case 1: $x \in A$. Then since $A \subseteq \overline{A}$, $x \in \overline{A}$. \\
+		
+		Case 2: $x \notin A$. Then for all $r > 0$, there exists an $a \in A$ such that $d(x, a) < r$ and $x \neq a$.	
+		Thus, $x$ is a limit point of $A$, so $x \in A'$. Since $A' \subseteq \overline{A}$, then $x \in \overline{A}$. \\
+		
+		In every case, $x \in \overline{A}$. By universal generalization, $e(A) \subseteq \overline{A}$
+	\end{proof}	
+\end{lemma}
+\begin{theorem}
+	$e(A)$ is closed in $X$.
+	\begin{proof}
+		Note: if $e(A)$ is closed, then $e(A)$ contains all of its limit points.
+
+		Let $\alpha$ be a limit point of $e(A)$. Then for all $r > 0$, there exists an $x \in e(A)$ such that
+		$d(\alpha, x) < \frac{r}{2}$. But since $x \in e(A)$, we know that
+		\begin{align*}
+			&\text{(1) } \forall r > 0, N_r(x) \cap A \neq \phi \\
+			&\text{(2) } \forall r > 0, N_r(x) \cap A^c \neq \phi \\
+		\end{align*}
+		As such,
+		\begin{align*}
+			&\text{(1) } \forall r > 0, \exists a \in A \text{ such that } d(x, a) < \frac{r}{2} \\
+			&\text{(2) } \forall r > 0, \exists b \in A^c \text{ such that } d(x, b) < \frac{r}{2}. \\
+		\end{align*}
+		First consider the distance $d(\alpha, a)$. By the triangle inequality, we have:
+		\begin{align*}
+			d(\alpha, a) &\leq d(\alpha, x) + d(x,a) \\
+			&< \frac{r}{2} + \frac{r}{2} \\
+			&= r
+		\end{align*}
+		So for all $r > 0$, $d(\alpha, a) < r$. \\
+		Now consider the distance $d(\alpha, b)$. By the triangle inequality, we have:
+		\begin{align*}
+			d(\alpha, b) &\leq d(\alpha, x) + d(x,b) \\
+			&< \frac{r}{2} + \frac{r}{2} \\
+			&= r
+		\end{align*}
+		So for all $r > 0$, $d(\alpha, b) < r$. \\
+		These results imply:
+		\begin{align*}
+			&\text{(1) } \forall r > 0, N_r(\alpha) \cap A \neq \phi \\
+			&\text{(2) } \forall r > 0, N_r(\alpha) \cap A^c \neq \phi \\
+		\end{align*}
+		By definition, $\alpha \in e(A)$. By universal generalization, $e(A)$ contains all of its limit points.
+		Therefore $e(A)$ is closed in $X$.
+	\end{proof}
+\end{theorem}
+\newpage
+\begin{theorem}
+	If $A$ is closed, then $e(A) \subseteq A$.
+	\begin{proof}
+		Let $A$ be closed. Then, $A = \overline{A}$.
+		But we know from Lemma 21 that 
+		\[
+			e(A) \subseteq \overline{A}	
+		\]
+		As such,
+		\[
+			e(A) \subseteq \overline{A} = A.
+		\]
+		Therefore $e(A) \subseteq A$.
+	\end{proof}
+\end{theorem}
+\begin{theorem}
+	If $e(A) \subseteq A$ then $A$ is closed.
+	\begin{proof}
+		Assume $e(A) \subseteq A$.
+		Let $a$ be a limit point of $A$. We aim to show that $a \in A$.
+		Consider a neighborhood around $a$ with radius $r$ in the following two cases:
+
+		Case 1: $\exists r > 0$ such that $N_r(a) \subseteq A$. Since $a \in N_r(a)$, then $a \in A$. \\
+		
+		Case 2: $\nexists r > 0$ such that $N_r(a) \subseteq A$. Then for all $r > 0$, $N_r(a)$ contains at least one element 
+		that is not contained in $A$. Thus, $N_r(a) \cap A^c \neq \phi$. But $a$ is also a limit point, so we know that
+		for all $r > 0$, $N_r(a) \cap A \neq \phi$. Thus $a \in e(A)$, and since $e(A) \subseteq A$, then $x \in A$.
+
+		In both cases, $a \in A$. By universal generalization, $A$ contains all of its limit points. Therefore $A$ is closed.
+	\end{proof}
+\end{theorem}
 \newpage
 \item Let $(x_n)$ be a sequence of real numbers. We say that $(x_n)$ is \emph{mostly-Cauchy} if
 \[ |x_n - x_{n+1}| \xrightarrow{n \to \infty} 0.\]
@@ -538,5 +625,20 @@ Prove that the following results hold for such a sequence:
 	\item (10 points) The sequence $(x_n)$ converges.
 \end{enumerate}
 %-------------- Problem 6 -------------------
+\begin{theorem} 
+	The sequence $(x_n)$ converges.
+	\begin{proof}
+		Since $(x_n)$ is mostly-Cauchy, then for any $\epsilon > 0$ there exists an $N_1 \in \mathbb{N}$ such that if $n \geq N_1$, 
+		then $|x_n - x_{n+1}| < \frac{\epsilon}{2}$. Also, for any $\epsilon > 0$ there exists an $N_2 \in \mathbb{N}$ such that if $n \geq N_2$, 
+		then $|x_{n+1} - x_{n+2}| < \frac{\epsilon}{2}$. So let $N = \max\{N_1, N_2\}$. Then
+		\begin{align*}
+			|x_n - x_{n+2}| &\leq |x_n - x_{n+1}| + |x_{n+1} - x_{n+2}| \\
+			&< \frac{\epsilon}{2} + \frac{\epsilon}{2} \\
+			&= \epsilon
+		\end{align*}
+		Thus, $(x_{2n})$ and $(x_{2n+1})$ are both mostly-cauchy. Since the odd elements of $(x_n)$ are non-increasing, the even elements of $(x_n)$ are non-decreasing, 
+		the difference between subsequent odd-indexed elements is decreasing, and the difference between subsequent even-indexed elements is decreasing, $(x_n)$ must converge.
+	\end{proof}
+\end{theorem}
 \end{enumerate}
 \end{document} 
