@@ -133,12 +133,44 @@ First, here are some useful lemmas:
 \[ \sum_{k=1}^{\infty} a_k < \infty \quad \Rightarrow \quad \sum_{k=1}^{\infty} \frac{\sqrt{a_k}}{k} < \infty. \]
 %-------------- Problem 2 -------------------
 \begin{lemma}
+    For nonnegative real numbers $a$ and $b$, if  $a \leq b$, then $\sqrt{a} \leq \sqrt{b}$.
+    \begin{proof}
+        (by contrapositive)
+        We aim to show that if $\sqrt{a} > \sqrt{b}$, then $a > b$.
+        Assume $\sqrt{a} > \sqrt{b}$. Then consider
+        \begin{align*}
+            a &= (\sqrt{a})^2 \\
+            &= (\sqrt{a})\cdot (\sqrt{a}) \\
+            &> (\sqrt{a})\cdot (\sqrt{b}) \\
+            &> (\sqrt{b})\cdot (\sqrt{b}) \\
+            &= (\sqrt{b})^2 \\
+            &= b
+        \end{align*}
+        Thus, if $a \leq b$, then $\sqrt{a} \leq \sqrt{b}$.
+    \end{proof}
+\end{lemma}
+\begin{lemma}
     For any nonnegative real numbers $a$ and $b$,
     \[
         \sqrt{a \cdot b} \leq \max\{a,b\}    
     \]
     \begin{proof}
-
+        Consider the following cases:
+        \begin{enumerate}
+            \item $a$ and $b$ are nonnegative real numbers with $a \leq b$.
+            Then 
+            \begin{align*}
+                a &\leq b \\
+                \sqrt{a} &\leq \sqrt{b} \\
+                \sqrt{a} \cdot \sqrt{b} &\leq \sqrt{b} \cdot \sqrt{b} \\
+                \sqrt{a \cdot b} &\leq \sqrt{b \cdot b} \\
+                \sqrt{a \cdot b} &\leq b
+            \end{align*}
+            \item $a$ and $b$ are nonnegative real numbers with $b \leq a$.
+            Since $a$ and $b$ are arbitrary, then the same argument from part (a) applies here.
+            So $\sqrt{a \cdot b} \leq a$. \\
+        \end{enumerate}
+        Thus, in either case, $\sqrt{a \cdot b} \leq \max\{a,b\}$.
     \end{proof}
 \end{lemma}
 \begin{lemma}
@@ -147,7 +179,29 @@ First, here are some useful lemmas:
         \displaystyle \sum_{k=1}^\infty a_k + b_k \text{ converges.}
     \]
     \begin{proof}
-
+        Consider the sequences of partial sums $(A_n)$ and $(B_n)$ where:
+        \[
+            (A_n) = \displaystyle \sum_{k=1}^n a_k \text{ and } (B_n) = \displaystyle \sum_{k=1}^n b_k
+        \]
+        Since the two series converge, we know that 
+        \begin{align*}
+            \lim_{n \to \infty} A_n \text{ exists} \\
+            \lim_{n \to \infty} B_n \text{ exists}
+        \end{align*}
+        From limit laws, we know that
+        \[
+            \lim_{n \to \infty} A_n +  \lim_{n \to \infty} B_n  =  \lim_{n \to \infty} A_n + B_n 
+        \]
+        Thus, 
+        \[
+            \lim_{n \to \infty} A_n + B_n \text{ exists.}    
+        \]
+        So 
+        \begin{align*}
+            \lim_{n \to \infty} \displaystyle \sum_{k=1}^n a_k &+ \displaystyle \sum_{k=1}^n b_k \text{ exists.} \\
+            \lim_{n \to \infty} \displaystyle \sum_{k=1}^n a_k &+ a_k \text{ exists.} \\
+            \displaystyle \sum_{k=1}^{\infty} a_k &+ a_k \text{ converges.}
+        \end{align*}
     \end{proof}
 \end{lemma}
 \begin{lemma}
@@ -156,21 +210,44 @@ First, here are some useful lemmas:
         \displaystyle \sum_{k=1}^\infty \max\{a_k, b_k\} \text{ converges.}
     \]
     \begin{proof}
-
+        By Lemma 7, we know that
+        \[
+            \displaystyle \sum_{k=1}^{\infty} a_k + a_k \text{ converges.}
+        \]
+        We also know that for all $k$
+        \[
+            \max\{a_k, b_k\} \leq a_k + b_k.
+        \]
+        Thus, by the comparison test, 
+        \[
+            \displaystyle \sum_{k=1}^\infty \max\{a_k, b_k\} \text{ must also converge.}
+        \]
     \end{proof}
 \end{lemma}
 \begin{theorem} 
     If $(a_k)$ is a sequence of non-negative real numbers,
     \[ \sum_{k=1}^{\infty} a_k < \infty \quad \Rightarrow \quad \sum_{k=1}^{\infty} \frac{\sqrt{a_k}}{k} < \infty. \]
     \begin{proof}
-        Assume $\sum_{k=1}^{\infty} a_k < \infty$. Then we know that $\sum_{k=1}^{\infty} a_k < \infty$ converges.
+        Assume $\sum_{k=1}^{\infty} a_k < \infty$. Then we know that $\sum_{k=1}^{\infty} a_k $ converges.
         We also know that $\sum_{k=1}^{\infty} \frac{1}{k^2}$ converges.
 
         Consider the sequence 
         \begin{align*}
             \sum_{k=1}^{\infty} \frac{\sqrt{a_k}}{k} &= \sum_{k=1}^{\infty} \sqrt{\frac{1}{k^2} \cdot a_k } \\
-            &\leq \sum_{k=1}^{\infty} \max \left\{ \frac{1}{k^2}, a_k \right\}
+            &\leq \sum_{k=1}^{\infty} \max \left\{ \frac{1}{k^2}, a_k \right\} \text{ by Lemma 6.} \\
         \end{align*}
+        By Lemma 8, we know that 
+        \[
+            \sum_{k=1}^{\infty} \max \left\{ \frac{1}{k^2}, a_k \right\} \text{ converges.}
+        \]
+        Thus, by the comparison test,
+        \[
+            \sum_{k=1}^{\infty} \frac{\sqrt{a_k}}{k} \text{ must also converge.}
+        \]
+        So 
+        \[
+            \sum_{k=1}^{\infty} \frac{\sqrt{a_k}}{k} < \infty
+        \]
     \end{proof}
 \end{theorem}
 
