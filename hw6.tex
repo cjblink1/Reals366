@@ -262,6 +262,85 @@ First, here are some useful lemmas:
 \[ \sum_{n=1}^{\infty} b_n < \infty \quad \Rightarrow \quad \sum_{n=1}^{\infty} a_n < \infty.\]
 \end{enumerate}
 %-------------- Problem 3 -------------------
+\begin{lemma}
+    Let $c \in \mathbb{R^+}$ be an arbitrary constant. Then
+    \[
+        \sum_{n=1}^{\infty} a_n \text{ converges }\Rightarrow \sum_{n=1}^{\infty} a_n\cdot c \text{ converges }   
+    \]
+    \begin{proof}
+        Suppose that $\sum_{n=1}^{\infty} a_n$ converges to some value $\alpha$. Consider the sequence of partial sums: 
+        \[
+            A_n = \sum_{k=1}^{n} a_k
+        \]
+        Then we know that $(A_n)$ converges to $\alpha$. So for any $\epsilon > 0$, we know that there exists an $N \in \mathbb{N}$
+        such that if $n \geq N$
+        \[
+            |A_n - \alpha| < \epsilon.    
+        \]
+        Let $c \in \mathbb{R^+}$ be an arbitrary constant. Consider the sequence 
+        \[
+            B_n = \sum_{k=1}^n a_n\cdot c    
+        \]
+        We aim to show that $(B_n)$ converges. 
+
+        By the distributive law,
+        \[
+            B_n = \sum_{k=1}^n a_n\cdot c = c\cdot\sum_{k=1}^n a_n = c\cdot A_n
+        \]
+        By Rudin Thm. 3.3b, we see that 
+        \[
+            \lim_{n\to\infty} B_n = \lim_{n\to\infty} c\cdot A_n = c\cdot\alpha    
+        \]
+        Therefore, $(B_n)$ converges.
+    \end{proof}
+\end{lemma}
+\begin{lemma}
+    If $\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = L$, then for all $\epsilon > 0$, there exists an $N\in\mathbb{N}$
+    such that if $n \geq N$
+    \[
+        a_n < b_n\cdot(L + \epsilon). 
+    \]
+    \begin{proof}
+        Assume $\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = L$. Then for all $\epsilon > 0$, there exists an $N \in \mathbb{N}$
+        such that if $n \geq N$, then
+        \[
+            \left| \frac{a_n}{b_n} - L \right| < \epsilon    
+        \]
+        This implies
+        \begin{align*}
+            -\epsilon &< \frac{a_n}{b_n} - L < \epsilon \\
+            L - \epsilon &< \frac{a_n}{b_n} < L + \epsilon \\
+            b_n \cdot (L - \epsilon) &< a_n < b_n \cdot (L + \epsilon) \\
+        \end{align*}
+        So $a_n < b_n \cdot (L + \epsilon)$.
+    \end{proof}
+\end{lemma}
+\begin{theorem}
+    Suppose $(a_n)$ and $(b_n)$ are sequences of positive numbers. Let $\displaystyle L= \lim_{n\to\infty}\frac{a_n}{b_n}$ and $0 < L < \infty$.
+    Then 
+    \[ \sum_{n=1}^{\infty} b_n < \infty \quad \Rightarrow \quad \sum_{n=1}^{\infty} a_n < \infty.\]
+    \begin{proof}
+        Assume $\displaystyle \sum_{n=1}^{\infty} b_n < \infty$. Then $\displaystyle \sum_{n=1}^{\infty} b_n$ converges.
+        Since $\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = L$, we see from Lemma 11 that for all $\epsilon > 0$, there
+        exists an $N\in\mathbb{N}$ such that if $n \geq N$,
+        \[
+            a_n < b_n \cdot (L + \epsilon)    
+        \]
+        Since $\displaystyle \sum_{n=1}^{\infty} b_n$ converges, we know from Lemma 10 that
+        \[
+            \displaystyle \sum_{n=1}^{\infty} b_n \cdot (L + \epsilon) \text{ converges.}
+        \]
+        Therefore, by the comparison test,
+        \[
+            \displaystyle \sum_{n=1}^{\infty} a_n \text{ converges.}
+        \]
+    \end{proof}
+\end{theorem}
+\begin{theorem}
+    Suppose $(a_n)$ and $(b_n)$ are sequences of positive numbers. Let $\displaystyle L= \lim_{n\to\infty}\frac{a_n}{b_n}$ and $0 < L < \infty$.
+    Then 
+    \[ \sum_{n=1}^{\infty} a_n < \infty \quad \Rightarrow \quad \sum_{n=1}^{\infty} b_n < \infty.\]
+\end{theorem}
 Part a: $\sum_{n=1}^{\infty} (L - \epsilon)\cdot b_n < a_n < (L + \epsilon)\cdot b_n$
 
 \newpage
