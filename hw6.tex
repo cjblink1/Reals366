@@ -53,9 +53,6 @@
 
 \noindent \hrulefill \\\\
 On this Homework Set, I worked with Lauren Wiseman and Josh Arroyo.\\
-First, here are some useful lemmas:
-
-\newpage
 \begin{enumerate}[1.]
 \item Determine (with proof) whether the following series converge or diverge
 \begin{enumerate}[(a)]
@@ -66,11 +63,19 @@ First, here are some useful lemmas:
 \begin{lemma}
     $\displaystyle \sum_{k=1}^\infty \frac{1}{2k}$ diverges.
     \begin{proof}
+        Note:
+        \[
+            \sum_{k = 1}^\infty \frac{1}{2k} = \sum_{k = 1}^\infty \frac{1}{2} \cdot \frac{1}{k} = \frac{1}{2} \sum_{k = 1}^\infty \frac{1}{k}   
+        \]
+        By Rudin Thm. 3.28, we see that $\displaystyle \sum_{k = 1}^\infty \frac{1}{k} = \infty$. Thus,
+        $\displaystyle \frac{1}{2} \sum_{k = 1}^\infty \frac{1}{k} = \frac{1}{2} \cdot \infty = \infty$.
+        Therefore $\displaystyle \sum_{k=1}^\infty \frac{1}{2k}$ diverges.
     \end{proof}
 \end{lemma}
 \begin{lemma}
     $\displaystyle \sum_{k=1}^\infty \frac{1}{k^{\frac{3}{2}}}$ converges.
     \begin{proof}
+        This follows from Rudin Thm. 3.28.
     \end{proof}
 \end{lemma}
 
@@ -298,7 +303,7 @@ First, here are some useful lemmas:
     If $\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = L$, then for all $\epsilon > 0$, there exists an $N\in\mathbb{N}$
     such that if $n \geq N$
     \[
-        a_n < b_n\cdot(L + \epsilon). 
+        b_n \cdot(L - \epsilon) < a_n < b_n\cdot(L + \epsilon). 
     \]
     \begin{proof}
         Assume $\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = L$. Then for all $\epsilon > 0$, there exists an $N \in \mathbb{N}$
@@ -312,7 +317,6 @@ First, here are some useful lemmas:
             L - \epsilon &< \frac{a_n}{b_n} < L + \epsilon \\
             b_n \cdot (L - \epsilon) &< a_n < b_n \cdot (L + \epsilon) \\
         \end{align*}
-        So $a_n < b_n \cdot (L + \epsilon)$.
     \end{proof}
 \end{lemma}
 \begin{theorem}
@@ -324,7 +328,7 @@ First, here are some useful lemmas:
         Since $\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = L$, we see from Lemma 11 that for all $\epsilon > 0$, there
         exists an $N\in\mathbb{N}$ such that if $n \geq N$,
         \[
-            a_n < b_n \cdot (L + \epsilon)    
+            a_n < b_n \cdot (L + \epsilon).  
         \]
         Since $\displaystyle \sum_{n=1}^{\infty} b_n$ converges, we know from Lemma 10 that
         \[
@@ -340,9 +344,46 @@ First, here are some useful lemmas:
     Suppose $(a_n)$ and $(b_n)$ are sequences of positive numbers. Let $\displaystyle L= \lim_{n\to\infty}\frac{a_n}{b_n}$ and $0 < L < \infty$.
     Then 
     \[ \sum_{n=1}^{\infty} a_n < \infty \quad \Rightarrow \quad \sum_{n=1}^{\infty} b_n < \infty.\]
+    \begin{proof}
+        Assume $\displaystyle \sum_{n = 1}^\infty a_n < \infty$. Then $\displaystyle \sum_{n = 1}^\infty a_n$ converges.
+        Since $\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = L$, we see from Lemma 11 that for all $\epsilon > 0$, there
+        exists an $N\in\mathbb{N}$ such that if $n \geq N$,
+        \[
+            b_n \cdot (L - \epsilon) < a_n.
+        \]
+        Since $\displaystyle \sum_{n = 1}^\infty a_n$ converges, by the comparison test,
+        \[
+            \sum_{n = 1}^\infty b_n \cdot (L - \epsilon) \text{ converges.}
+        \]
+        By Lemma 10, $\displaystyle \sum_{n = 1}^\infty b_n$ converges.
+    \end{proof}
 \end{theorem}
-Part a: $\sum_{n=1}^{\infty} (L - \epsilon)\cdot b_n < a_n < (L + \epsilon)\cdot b_n$
-
+\begin{theorem}
+    Suppose $(a_n)$ and $(b_n)$ are sequences of positive numbers. Let $\displaystyle L= \lim_{n\to\infty}\frac{a_n}{b_n}$ and $0 < L < \infty$.
+    Then 
+    \[ \sum_{n=1}^{\infty} a_n < \infty \quad \Leftrightarrow \quad \sum_{n=1}^{\infty} b_n < \infty.\]
+    \begin{proof}
+        This claim follows from Theorem 12 and Theorem 13.
+    \end{proof}
+\end{theorem}
+\begin{theorem}
+    Suppose $(a_n)$ and $(b_n)$ are sequences of positive numbers. Let $\displaystyle L= \lim_{n\to\infty}\frac{a_n}{b_n}$ and $L = 0$.
+    Then 
+    \[ \sum_{n=1}^{\infty} b_n < \infty \quad \Rightarrow \quad \sum_{n=1}^{\infty} a_n < \infty.\]
+    \begin{proof}
+        Assume $\displaystyle \sum_{n = 1}^\infty b_n < \infty$. Then $\displaystyle \sum_{n = 1}^\infty$ converges.
+        Since $\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = L$, we see from Lemma 11 that for all $\epsilon > 0$, there
+        exists an $N\in\mathbb{N}$ such that if $n \geq N$,
+        \[
+            a_n < b_n \cdot (L + \epsilon).
+        \]
+        Since $L = 0$, we see that
+        \[
+            a_n < b_n \cdot \epsilon    
+        \]
+        
+    \end{proof}
+\end{theorem}
 \newpage
 \item Suppose $(a_k)$ is a sequence of real numbers. Define the sequence $(m_k)$ where for all $k \in \mathbb{N}$ we have
 \[ m_k= \frac{a_1+a_2+\dots+ a_k}{k}.\]
@@ -367,7 +408,123 @@ Determine the following limits or explain why they don't exist. Prove your claim
 \item $\displaystyle \lim_{x\to 4} f(x)$.
 \end{enumerate}
 %-------------- Problem 5 -------------------
-
+\begin{lemma}
+    $a = 1$ is a limit point of $E$.
+    \begin{proof}
+        Since $(-1, 1)$ is an open interval of $\mathbb{R}$, $a = 1$ is a limit point of $(-1, 1)$. 
+        Thus, for all $\epsilon > 0$, there exists an $x \in (-1, 1)$ such that
+        \[
+            x \in N_\epsilon (a) \text{ and } x \neq a.   
+        \] 
+        But $(-1, 1)$ is contained in $E$. So $x \in E$. 
+        So for all $\epsilon >0$, there exists an $x \in E$ such that 
+        \[
+            x \in N_\epsilon (a) \text{ and } x \neq a.
+        \] 
+        Therefore, $a = 1$ is a limit point of $E$.
+    \end{proof}
+\end{lemma}
+\begin{theorem}
+    $\displaystyle \lim_{x \to 1} f(x) = 3$.
+    \begin{proof}
+        Note: from Lemma 16 we see that $1$ is a limit point of $E$. \\
+        Fix $\epsilon > 0$, and choose $\delta > 0$ such that $\delta < \min\{\epsilon, 1\}$.
+        Suppose 
+        \[
+            0 < |x - 1| < \delta    
+        \]
+        Then we see that 
+        \begin{align*}
+            |(x + 2) - 3| &< \delta \\
+            \left| \frac{(x - 1)\cdot(x + 2)}{(x - 1)} - 3\right| &< \delta
+        \end{align*}
+        Note: $x - 1 \neq 0$ because $|x - 1| > 0$.
+        We also see that 
+        \[
+            \left| \frac{(x - 1)\cdot(x + 2)\cdot(x - 3)}{(x - 1)\cdot(x - 3)} - 3\right| < \delta
+        \]
+        Note: $x - 3 \neq 0$ because 
+        \begin{align*}
+            |1 - 3| &\leq |x - 1| + |x - 3| \\
+            2 &< 1 + |x - 3| \\
+            |x - 3| &> 1
+        \end{align*}
+        Finally we see that 
+        \begin{align*}
+            \left| \frac{x^3-2x^2-5x+6}{x^2-4x+3} - 3 \right| &< \delta \\
+            | f(x) - 3 | &< \delta < \epsilon.
+        \end{align*}
+        Thus, $\displaystyle \lim_{x \to 1} f(x) = 3$.
+    \end{proof}
+\end{theorem}
+\begin{lemma}
+    $a = 6$ is not a limit point of $E$.
+    \begin{proof}
+        Consider $epsilon = \frac{1}{2}$. By the definition of $E$ there exists no $x \in E$ such that
+        \[
+            x \in N_\epsilon(a) \text{ and } x \neq a    
+        \]
+        Thus, $a = 6$ is not a limit point of $E$.
+    \end{proof}
+\end{lemma}
+\newpage
+\begin{theorem}
+    $\displaystyle \lim_{x \to 6} f(x)$ does not exist.
+    \begin{proof}
+        In order for $\displaystyle \lim_{x \to 6} f(x)$ to exist, $a = 6$ must be a limit point
+        of $E$. By Lemma 18, we see that $a = 6$ is not a limit point of $E$. Therefore 
+        $\displaystyle \lim_{x \to 6} f(x)$ does not exist.
+    \end{proof}
+\end{theorem}
+\begin{lemma}
+    $a = 4$ is a limit point of $E$.
+    \begin{proof}
+        Fix an $\epsilon$ between $0$ and $1$. Consider the neighborhood $N_\epsilon(a)$. We can always
+        find an element
+        \[
+            x = a + \frac{\epsilon}{2} \in N_\epsilon(a) \subseteq (3, 5).
+        \]
+        But $(3, 5) \subseteq E$. So for all $\epsilon > 0$, there exists an $x \in E$ such that 
+        \[
+            x \in N_\epsilon(a) \text{ and } x \neq a.    
+        \]
+        Therefore, $a = 4$ is a limit point of $E$.
+    \end{proof}
+\end{lemma}
+\begin{theorem}
+    $\displaystyle \lim_{x \to 4} f(x) = 6$.
+    \begin{proof}
+        Note: from Lemma 20 we see that $4$ is a limit point of $E$. \\
+        Fix $\epsilon > 0$, and choose $\delta > 0$ such that $\delta < \min\{\epsilon, 1\}$.
+        Suppose 
+        \[
+            0 < |x - 4| < \delta    
+        \]
+        Then we see that 
+        \begin{align*}
+            |(x + 2) - 6| &< \delta \\
+            \left| \frac{(x - 1)\cdot(x + 2)}{(x - 1)} - 6\right| &< \delta
+        \end{align*}
+        Note: $x - 1 \neq 0$ because 
+        \begin{align*}
+            |1 - 4| &\leq |x - 1| + |x - 4| \\
+            3 &< |x - 1| + 1 \\
+            |x - 1| &> 2
+        \end{align*}
+        Note: $x - 3 \neq 0$ because 
+        \begin{align*}
+            |3 - 4| &\leq |x - 3| + |x - 4| \\
+            1 &< |x - 3| + 1 \\
+            |x - 3| &> 0
+        \end{align*}
+        Finally we see that 
+        \begin{align*}
+            \left| \frac{x^3-2x^2-5x+6}{x^2-4x+3} - 6 \right| &< \delta \\
+            | f(x) - 6 | &< \delta < \epsilon.
+        \end{align*}
+        Thus, $\displaystyle \lim_{x \to 1} f(x) = 6$.
+    \end{proof}
+\end{theorem}
 \newpage
 \item  Let $(X,d)$ be the metric space where $X$ is any non-empty set and
 \[ d(x,y) = \begin{cases} 1 & x\neq y \\ 
@@ -376,9 +533,15 @@ Determine the following limits or explain why they don't exist. Prove your claim
 Determine which functions $f: (X,d) \rightarrow (\mathbb{R},d_{\infty})$ are continuous. 
 %-------------- Problem 6 -------------------
 \begin{theorem}
-    All functions $f: X \to \mathbb{R}$ are closed.
+    All functions $f: X \to \mathbb{R}$ are continuous.
     \begin{proof}
-        Note: $f: X \to \mathbb{R}$ is continuous if and only if for every closed set $V \subseteq \mathbb{R}$, $f^{-1}(V) \subseteq X$ is also closed in $X$. 
+        Note: $f: X \to \mathbb{R}$ is continuous if and only if for every closed set $V \subseteq \mathbb{R}$, $f^{-1}(V) \subseteq X$ is also closed in $X$.
+        We know from Homework 4 that every subset of $(X,d)$ is closed.
+        Consider a closed subset $V \subseteq \mathbb{R}$ and an arbitrary function $f: X \to \mathbb{R}$. The preimage of $V$, 
+        $f^{-1} (V)$ is, by definition, contained in $X$. Since every subset of $X$ is closed, then
+        $f^{-1} (V)$ must also be closed. Since $V$ was chosen arbitrarily, for every closed set $V \subseteq \mathbb{R}$,  
+        $f^{-1} (V)$ is also closed in $X$. Thus, $f$ is continuous. Since $f$ was chosen arbitrarily,
+        all functions $f: X \to \mathbb{R}$ are continuous.
     \end{proof}
 \end{theorem}
 \newpage
@@ -387,7 +550,22 @@ Determine which functions $f: (X,d) \rightarrow (\mathbb{R},d_{\infty})$ are con
 Show that there exists an $r>0$ such that 
 \[ 0 < |x-a|<r \quad \Rightarrow \quad f(x) > 0.\]
 %-------------- Problem 7 -------------------
-Note: pick $\alpha > \epsilon$
-
+\begin{proof}
+    Suppose $\displaystyle \lim_{x \to a} f(x) = \alpha$. Then we know that for all $\epsilon > 0$, 
+    there exists a $\delta > 0$ such that
+    \[
+        0 < |x - a| < \delta \Rightarrow |f(x) - \alpha| < \epsilon.    
+    \]
+    Since $\alpha > 0$, consider any $\epsilon'$ such that $0 < \epsilon' < \alpha$. Then we know there must exist some $\delta' > 0$ such that
+    \[
+        0 < |x - a| < \delta' \Rightarrow |f(x) - \alpha| < \epsilon' < \alpha.    
+    \]
+    Thus, let $r = \delta'$. Then if $0 < |x - a| < r$, 
+    \begin{align*}
+        |f(x) - \alpha| &< \alpha \\    
+        f(x) - \alpha &> -\alpha \\
+        f(x) > 0.
+    \end{align*}
+\end{proof}
 \end{enumerate}
 \end{document} 

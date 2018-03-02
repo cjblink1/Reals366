@@ -1,0 +1,322 @@
+\documentclass{amsart}
+    \usepackage{amssymb}
+    \usepackage{enumerate}
+    \usepackage[headheight=12pt,textwidth=7in,top=1in, bottom=1in]{geometry}
+    
+    %some custom commands you may find useful
+    
+    \usepackage{xparse}
+    \DeclareDocumentCommand{\diff}{O{} m}{
+        \frac{\mathrm{d} #1}{\mathrm{d}#2}
+        }
+    \DeclareDocumentCommand{\pdiff}{O{} m}{
+        \frac{\partial #1}{\partial #2}
+        }
+    \DeclareDocumentCommand{\integral}{O{} O{} m O{x}}{
+        \int_{#1}^{#2} #3\ \mathrm{d}#4
+        }
+    
+    \def\name{Connor Boyle} %your name goes here
+    \def\CM{2239} %your cm goes here
+    \def\hwnum{2} %homework number goes here
+    
+    %these packages create the footer and page numbering
+    
+    \usepackage{fancyhdr}
+    \usepackage{lastpage}
+    
+    \newtheorem{theorem}{Theorem}
+    \newtheorem{lemma}[theorem]{Lemma}
+    \newtheorem{definition}[theorem]{Definition}
+    
+    \pagestyle{fancy}
+    \lhead{\name}
+    \chead{MA 366: Exam \hwnum}
+    \rhead{\CM}
+    \fancyfoot[C]{\footnotesize Page \thepage\ of \pageref{LastPage}}
+    
+    \fancypagestyle{firststyle}
+    {  \renewcommand{\headrulewidth}{0pt}%
+       \fancyhf{}%
+       \fancyfoot[C]{\footnotesize Page \thepage\ of \pageref{LastPage}}
+    }
+    
+    \begin{document}
+    \noindent
+    \thispagestyle{firststyle}
+    \begin{tabular}{l}
+    {\LARGE \textbf{MA 366: Real Analysis} }\\
+    {\Large Exam \hwnum}
+    \end{tabular} \hfill \begin{tabular}{r}
+                            \name \\
+                            \CM
+                            \end{tabular}
+    
+    \noindent \hrulefill \\\\
+    \begin{enumerate}[1.]
+    \item Suppose $f: \mathbb{R} \to \mathbb{R}$ is continuous and periodic. Prove that there exists $\alpha,\omega \in \mathbb{R}$ such that for all $x \in \mathbb{R}$
+    \[ f(\alpha) \leq f(x) \qquad \text{and} \qquad f(\omega) \geq f(x).\]
+    %-------------- Problem 1 -------------------
+    \begin{lemma}
+        Suppose $f: \mathbb{R} \to \mathbb{R}$ is continuous and periodic, then $f$ is bounded above.
+        \begin{proof}
+            Note: Since $f$ is periodic, for some $T \in \mathbb{R}$, 
+            \[
+                f(x) = f(x+T).    
+            \]
+            Consider the interval $[a, a+ T]$ where $a \in \mathbb{R}$. Since $f$ is continuous, by the Extreme Value Theorem,  there exists an $M \in [a, a+T]$ such that for all $x \in [a, a+T]$,
+            $f(M) \geq f(x)$. 
+            But since $f$ is periodic, we know that 
+            \[
+                f(M) \geq f(x) = f(x+ T) = f(x - T) = ... = f(x \pm jT) \qquad \text{where} \qquad j \in \mathbb{Z}, x \in [a, a+ T]   
+            \]
+            But
+            \[
+                \bigcup_{j \in \mathbb{Z}} \{ x + jT : x\in [a, a+T], j \in \mathbb{Z}\} = \mathbb{R}    
+            \]
+            Thus, $f(M) \geq f(x)$ for all $x \in \mathbb{R}$. Thus, $f$ is bounded above.
+        \end{proof}
+    \end{lemma}
+    \begin{lemma}
+        Suppose $f: \mathbb{R} \to \mathbb{R}$ is continuous and periodic, then $f$ is bounded below.
+        \begin{proof}
+            Note: Since $f$ is periodic, for some $T \in \mathbb{R}$, 
+            \[
+                f(x) = f(x+T).    
+            \]
+            Consider the interval $[a, a+ T]$ where $a \in \mathbb{R}$. Since $f$ is continuous, by the Extreme Value Theorem,  there exists an $m \in [a, a+T]$ such that for all $x \in [a, a+T]$,
+            $f(m) \leq f(x)$. 
+            But since $f$ is periodic, we know that 
+            \[
+                f(m) \leq f(x) = f(x+ T) = f(x - T) = ... = f(x \pm jT) \qquad \text{where} \qquad j \in \mathbb{Z}, x \in [a, a+ T]   
+            \]
+            But
+            \[
+                \bigcup_{j \in \mathbb{Z}} \{ x + jT : x\in [a, a+T], j \in \mathbb{Z}\} = \mathbb{R}    
+            \]
+            Thus, $f(m) \leq f(x)$ for all $x \in \mathbb{R}$. Thus, $f$ is bounded below.
+        \end{proof}
+    \end{lemma}
+    \begin{theorem}
+        Suppose $f: \mathbb{R} \to \mathbb{R}$ is continuous and periodic. Then there exists $\alpha,\omega \in \mathbb{R}$ such that for all $x \in \mathbb{R}$
+        \[ f(\alpha) \leq f(x) \qquad \text{and} \qquad f(\omega) \geq f(x).\]
+        \begin{proof}
+            By Lemma 1, We know that there exists an $\omega \in \mathbb{R}$ such that for all $x \in \mathbb{R}$, 
+            \[
+                f(\omega) \geq f(x)    
+            \]
+            By Lemma 2, We know that there exists an $\alpha \in \mathbb{R}$ such that for all $x \in \mathbb{R}$, 
+            \[
+                f(\alpha) \leq f(x)    
+            \]
+            Thus, we have proven what we aimed to show.
+        \end{proof}
+    \end{theorem}
+    
+    \newpage
+    \item  Define the function $f: \mathbb{R} \to \mathbb{R}$ by
+    \[ f(x) = \begin{cases} 3 & x \leq 0 \\
+                              & \\
+                            \dfrac{5x+6}{3x+2} & 0 < x < 1 \\
+                              & \\
+                            2 & x \geq 1.
+                            \end{cases}\]
+    \begin{enumerate}[(a)]
+    \item (10 points) Determine $\displaystyle \lim_{x \to 0} f(x)$, if it exists. Prove your claim (your proof should begin: ``Fix $\epsilon >0$''.)
+    \item (10 points) Find $f'(0)$, if it exists. Prove your claim.
+    \end{enumerate}
+    %-------------- Problem 2 -------------------
+    \begin{theorem}
+        $\displaystyle \lim_{x \to 0} f(x) = 3$.
+        \begin{proof}
+            Fix $\epsilon > 0$. Choose $\displaystyle \delta = \min \left\{ \frac{\epsilon}{4}, 1 \right\}$. Suppose that 
+            \[
+                |x - 0| < \delta    
+            \]
+            Then consider the following cases:
+            \begin{itemize}
+                \item $x \leq 0$. \\
+                We see that 
+                \begin{align*}
+                    |x| &< \delta \\
+                    |x| &< \frac{\epsilon}{4} \\
+                    |x| &< \epsilon \\
+                    0 < |x| &< \epsilon \\
+                    |3 - 3| &< \epsilon \\
+                    |f(x) - 3| &< \epsilon \\
+                \end{align*}
+
+                \item $0 < x < 1$. \\
+                We see that 
+                \begin{align*}
+                    |x| &< \delta \\
+                    |x| &< \frac{\epsilon}{4} \\
+                    |4x| &< \epsilon \\
+                    \left| \frac{4x}{3x + 2} \right| &< \epsilon \qquad \text{(since $x > 0$)} \\
+                    \left| \frac{5x + 6 - 9x -6}{3x + 2} \right| &= \\
+                    \left| \frac{5x + 6}{3x + 2} - \frac{9x + 6}{3x + 2} \right| &= \\
+                    \left| \frac{5x + 6}{3x + 2} - \frac{3\cdot(3x + 2)}{3x + 2} \right| &= \\
+                    \left| \frac{5x + 6}{3x + 2} - 3 \right| &= \\
+                    \left| f(x) - 3 \right| &= \\
+                \end{align*}
+
+                \item $x \geq 1$.
+                This case cannot occur, because we've already chosen $|x| < 1$.
+            \end{itemize}
+            Thus, for any $\epsilon > 0$, there exists a $\delta > 0$ such that 
+            \[
+                |x - 0| < \delta \Rightarrow |f(x) - 3| < \epsilon.    
+            \]
+        \end{proof}
+    \end{theorem}
+    
+    \newpage
+    \item For $\mathbf{x}, \mathbf{y} \in \mathbb{R}^2$, define $d_2 : \mathbb{R}^2 \times \mathbb{R}^2 \to \mathbb{R}$ by
+    \[ d_2(\mathbf{x},\mathbf{y}) = \sqrt{(x_1 - y_1)^2 + (x_2-y_2)^2} \qquad \text{where} \quad \mathbf{x}= (x_1,x_2),\ \mathbf{y} = (y_1,y_2).\]
+    Then $(\mathbb{R}^2,d_2)$ is a metric space (you may take this for granted).
+    
+    Now, let $A$ be a compact subset of $\mathbb{R}$ (under the usual Archimedean metric), and let $f: A \to \mathbb{R}$. Define the set $C(f) \subseteq \mathbb{R}^2$ by
+        \[ C(f) = \{ (x,y) \in \mathbb{R}^2 : x \in A,\ y= f(x)\}.\]
+    Prove the following:
+    \begin{enumerate}[(a)]
+    \item (10 points) If $f$ is continuous, then $C(f)$ is compact.
+    \item (5 points) If $C(f)$ is compact, then $f$ is continuous. 
+    \end{enumerate}
+    
+    %-------------- Problem 3 -------------------
+    \begin{definition}
+        Let $\mathbf{g}: A \to C(f)$ be defined by:
+        \[
+            \mathbf{g}(x) = (x, f(x))    
+        \]
+    \end{definition}
+    \begin{lemma}
+        If $f$ is continuous, $\mathbf{g}$ is continuous.
+        \begin{proof}
+            Fix $\epsilon > 0$. Also fix $0 < r < \epsilon$. Since $f$ is continuous, there exists a $\delta > 0$ such that 
+            \[
+                |x - a| < \delta \Rightarrow |f(x) - f(a)| < r.    
+            \] 
+            Then choose $\epsilon = \sqrt{\delta^2 + r^2}$. Suppose that $|x - a| < \delta$. Then
+            \begin{align*}
+                |x - a| &< \delta \\
+                (x - a)^2 &< \delta^2 \\
+                (x - a)^2 + (f(x) - f(a))^2 &< \delta^2 + (f(x) - f(a))^2\\
+                (x - a)^2 + (f(x) - f(a))^2 &< \delta^2 + r^2\\
+                \sqrt{(x - a)^2 + (f(x) - f(a))^2} &< \sqrt{\delta^2 + r^2} \\
+                \sqrt{(x - a)^2 + (f(x) - f(a))^2} &< \epsilon
+            \end{align*}
+        \end{proof}
+    \end{lemma}
+
+    \begin{lemma}
+        $\mathbf{g}$ is surjective.
+        \begin{proof}
+            Let $\mathbf{x} = (x, y) \in \mathbb{R}^2$. Suppose that $\mathbf{x} \in \mathbf{g}(A)$. By definition of $\mathbf{g}$, 
+            $\mathbf{g}(x) = \mathbf{x}$. Thus, there exists an element $x \in A$ such that $\mathbf{g}(x) = \mathbf{x}$. By universal generalization, 
+            for all $\mathbf{x} \in \mathbf{g}(A)$, there exists an $x \in A$ such that $\mathbf{g}(x) = \mathbf{x}$. So $\mathbf{g}$ is surjective!
+        \end{proof}
+    \end{lemma}
+
+    \begin{theorem}
+        If $f$ is continuous, then $C(f)$ is compact.
+        \begin{proof}
+            Consider $\mathbf{g}$ as defined above. By Lemma 6, $\mathbf{g}$ is continuous.
+            By Rudin Thm. 4.14, since $A$ is compact, then $\mathbf{g}(A)$ is compact. But since
+            $\mathbf{g}$ is surjective, $\mathbf{g}(A) = C(f)$. Therefore, $C(f)$ is compact.
+        \end{proof}
+    \end{theorem}
+    
+    \newpage
+    \item Given $f:(a,b) \to \mathbb{R}$ is continuous, and given $n$ points $x_1,x_2,\ldots, x_n \in (a,b)$, prove that there exists a point $c \in (a,b)$ with
+    \[ f(c) = \frac{f(x_1) + f(x_2) + \cdots + f(x_n)}{n}.\]
+    %-------------- Problem 4 -------------------
+    \begin{lemma}
+        Let $X \subseteq (a, b)$ be finite. Define 
+        \[
+            \gamma = \frac{1}{n} \sum_{i = 1}^n x_i \qquad \text{where} \qquad x_i \in X, n = |X|. 
+        \]
+        Then $\gamma \in [\inf X, \sup X] \subseteq (a,b)$.
+        \begin{proof}
+            Since $X$ is finite, $\sup X \in X$. Consider the sum: 
+            \[
+                \frac{1}{n} \sum_{i = 1}^n \sup X =  \frac{1}{n}\cdot n\cdot \sup X = \sup X.  
+            \]
+            Similarly since $X$ is finite, $\inf X \in X$. Consider the sum:
+            \[
+                \frac{1}{n} \sum_{i = 1}^n \inf X =  \frac{1}{n}\cdot n\cdot \inf X = \inf X.  
+            \]
+            We also know that
+            \[
+                \frac{1}{n}\sum_{i = 1}^n \inf X \leq \frac{1}{n}\sum_{i = 1}^n x_i \leq \frac{1}{n}\sum_{i = 1}^n \sup X.
+            \]
+            If follows that 
+            \[
+                \inf X \leq \gamma \leq \sup X.
+            \]
+            Thus, $\gamma \in [\inf X, \sup X] \subseteq (a,b)$.
+        \end{proof}
+    \end{lemma}
+
+    \begin{theorem}
+        Given $f:(a,b) \to \mathbb{R}$ is continuous, and given $n$ points $x_1,x_2,\ldots, x_n \in (a,b)$, then there exists a point $c \in (a,b)$ with
+        \[ f(c) = \frac{f(x_1) + f(x_2) + \cdots + f(x_n)}{n}.\]
+        \begin{proof}
+            Consider the set $Y = \{ f(x_i): 1 \leq i \leq n \}$. Since $n$ is finite, $Y$ is finite.
+            Thus, by Lemma 9, we know that 
+            \[
+                \gamma = \frac{1}{n} \sum_{i = 1}^n f(x_i) \in [\inf Y, \sup Y] \subseteq f((a,b)).
+            \]
+            But since $f$ is continuous, we know that by the Intermediate Value Theorem, there must exist some $c \in (a, b)$
+            such that $f(c) = \gamma \in f((a,b))$.
+        \end{proof}
+    \end{theorem}
+    
+    \newpage
+    \item Let $\{a_n\}$ be a bounded, positive, and monotonically increasing sequence. Prove that
+    \[ \sum_{n=1}^{\infty} \left( 1- \frac{a_n}{a_{n+1}} \right) < \infty.\]
+    %-------------- Problem 5 -------------------
+    \begin{theorem}
+        If $(a_n)$ is bounded, positive, and monotonically increasing, then $\displaystyle \sum_{n = 1}^\infty \left( 1 - \frac{a_n}{a_{n+1}} \right)$ converges.
+        \begin{proof}
+            Assume $(a_n)$ converges. Then we know that $(a_{n+1} - a_1)$ converges by limit laws. Also, by limit laws we see that 
+            \[
+                \left( \frac{a_{n+1} - a_1}{a_1} \right) \qquad \text{converges}.    
+            \]
+            We can rewrite the numerator using a telescoping sum, and we find that
+            \[
+                \frac{a_{n+1} - a_1}{a_1} = \sum_{k = 1}^n \frac{a_{k + 1} - a_{k}}{a_1}.
+            \]
+            Thus, 
+            \[
+                \sum_{k = 1}^\infty \frac{a_{k + 1} - a_{k}}{a_1} \qquad \text{converges.}
+            \]
+            Since $(a_n)$ is monotonically increasing, for all $k \in \mathbb{N}$
+            \[
+                \frac{a_{k+1} - a_1}{a_1} \geq \frac{a_{k+1} - a_1}{a_{k+1}}.
+            \]
+            So by direct comparison test,
+            \[
+                \sum_{k = 1}^\infty \frac{a_{k + 1} - a_{k}}{a_{k+1}} \qquad \text{converges.}
+            \]
+            Upon simplification, we see that
+            \[
+                \sum_{k = 1}^\infty \frac{a_{k + 1} - a_{k}}{a_{k+1}} = \sum_{k = 1}^\infty \left( 1 - \frac{a_k}{a_{k+1}} \right)
+            \]
+            So 
+            \[
+                \sum_{k = 1}^\infty \left( 1 - \frac{a_k}{a_{k+1}} \right) \qquad \text{converges.}
+            \]
+        \end{proof}
+    \end{theorem}
+    
+    \newpage
+    \item Suppose $f: (a,b) \to \mathbb{R}$ is differentiable.
+    \begin{enumerate}[(a)]
+    \item (15 points) Prove the following: there exists a constant $M$ so that $|f(x) - f(y)| \leq M |x-y|$ for all $x,y \in (a,b)$ if and only if $f'$ is bounded on $(a,b)$.
+    \item (5 points) Is it true that for every continuous function $g: (a,b) \to \mathbb{R}$, there exists an $M > 0$ such that $|g(x)-g(y)| \leq M |x-y|$ for all $x,y \in (a,b)$? Prove your claim.
+    \end{enumerate}
+    %-------------- Problem 6 -------------------
+    
+    \end{enumerate}
+    \end{document} 

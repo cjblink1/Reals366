@@ -1,0 +1,291 @@
+\documentclass{amsart}
+    \usepackage{amssymb}
+    \usepackage{enumerate}
+    \usepackage[headheight=12pt,textwidth=7in,top=1in, bottom=1in]{geometry}
+    
+    %some custom commands you may find useful
+    
+    \usepackage{xparse}
+    \DeclareDocumentCommand{\diff}{O{} m}{
+        \frac{\mathrm{d} #1}{\mathrm{d}#2}
+        }
+    \DeclareDocumentCommand{\pdiff}{O{} m}{
+        \frac{\partial #1}{\partial #2}
+        }
+    \DeclareDocumentCommand{\integral}{O{} O{} m O{x}}{
+        \int_{#1}^{#2} #3\ \mathrm{d}#4
+        }
+    
+    \def\name{Connor Boyle} %your name goes here
+    \def\CM{2239} %your cm goes here
+    \def\hwnum{7} %homework number goes here
+    
+    %these packages create the footer and page numbering
+    
+    \usepackage{fancyhdr}
+    \usepackage{lastpage}
+    
+    \newtheorem{theorem}{Theorem}
+    \newtheorem{lemma}[theorem]{Lemma}
+    
+    \pagestyle{fancy}
+    \lhead{\name}
+    \chead{MA 366: Homework Set \hwnum}
+    \rhead{\CM}
+    \fancyfoot[C]{\footnotesize Page \thepage\ of \pageref{LastPage}}
+    
+    \fancypagestyle{firststyle}
+    {  \renewcommand{\headrulewidth}{0pt}%
+       \fancyhf{}%
+       \fancyfoot[C]{\footnotesize Page \thepage\ of \pageref{LastPage}}
+    }
+    
+    \begin{document}
+    \noindent
+    \thispagestyle{firststyle}
+    \begin{tabular}{l}
+    {\LARGE \textbf{MA 366: Real Analysis} }\\
+    {\Large Homework Set \hwnum}
+    \end{tabular} \hfill \begin{tabular}{r}
+                            \name \\
+                            \CM
+                            \end{tabular}
+    
+    \noindent \hrulefill \\\\
+    % On this Homework Set, I worked with Lauren Wiseman and Josh Arroyo.\\
+    \begin{enumerate}[1.]
+    \item Let $f : X \to \mathbb{R}$ and $g: X \to \mathbb{R}$ be continuous functions defined on a metric space $X$. Let $A$ be a dense subset of $X$. Assume that $f(x) = g(x)$ for all $x \in A$. Prove $f(x) = g(x)$ for all $x \in X$.
+    %-------------- Problem 1 -------------------
+    \begin{theorem}
+        Let $f : X \to \mathbb{R}$ and $g: X \to \mathbb{R}$ be continuous functions defined on a metric space $X$. Let $A$ be a dense subset of $X$. Assume that $f(x) = g(x)$ for all $x \in A$. Then $f(x) = g(x)$ for all $x \in X$.
+        \begin{proof}
+            Note: since $A$ is a dense subset of $X$, every point of $X$ is either a point of $A$ or a limit point of $A$.
+            Let $x \in X$ be arbitrary. Consider the following cases:
+            \begin{itemize}
+                \item $x \in A$: \\
+                    Then $f(x) = g(x)$.
+                \item $x \in A'$: \\
+                    Consider $f(x)$:
+                    \begin{align*}
+                        f(x) &= \lim_{a \to x} f(a) \text{ since $x$ is a limit point of $A$ and $f(x)$ is continuous}\\
+                        &= \lim_{a \to x} g(a) \text{ since $f(a) = g(a)$ for all $a \in A$} \\
+                        &= g(x) \text{ since $x$ is a limit point of $A$ and $g(x)$ is continuous}\\
+                    \end{align*}
+            \end{itemize}
+            In either case, $f(x) = g(x)$ for all $x \in X$.
+        \end{proof}
+    \end{theorem}
+    
+    \newpage
+    
+    \item Let $(X,d)$ and $(Y,m)$ be metric spaces, and let $f: X \to Y$. We call $f$ an \textbf{open map} if for all open $V \subseteq X$, we have $f(V)$ is open in $Y$. Show that if $f: \mathbb{R} \to \mathbb{R}$ is an open continuous map then $f$ is monotonic.
+    %-------------- Problem 2 -------------------
+    \begin{theorem} 
+        If $f: \mathbb{R} \to \mathbb{R}$ is an open continuous map then $f$ is monotonic.
+        \begin{proof}
+            Consider the contrapositive statement: \\
+
+            \emph{If $f: \mathbb{R} \to \mathbb{R}$ is continuous but not monotonic then $f$ is not an open map.} \\
+
+            Assume $f: \mathbb{R} \to \mathbb{R}$ is continuous but not monotonic. We aim to show that there exists an open set 
+            $V \subseteq \mathbb{R}$ such that $f(V) \subseteq \mathbb{R}$ is not open. 
+            Note: since $f$ is not monotonic, then at some location it attains a local maximum or minimum value. 
+            Consider the following cases:
+            \begin{itemize}
+                \item $f$ attains a local maximum value. \\
+                Then there exists some $m \in \mathbb{R}$ and $\epsilon > 0$ such that for all $x \in N_\epsilon(m)$, $f(x) \leq f(m)$.
+                Let $V = N_\epsilon(m)$. Consider $f(N_\epsilon(m))$. We know that $f(N_\epsilon(m))$ is non-empty \{$f(m) \in f(N_\epsilon(m))$\}.
+                We also know that $f(N_\epsilon(m))$ is bounded above. Thus, it has a supremum. 
+                \begin{lemma} $\sup f(N_\epsilon(m)) = f(m)$.
+                    \begin{proof}
+                    We already know that $f(m)$ is an upper bound for $f(N_\epsilon(m))$. It remains to show that 
+                    $f(m)$ is the least upper bound for $f(N_\epsilon(m))$. Assume for contradiction that there exists a $y \in N_\epsilon(m)$ such that $f(y)$ is also an upper bound for $f(N_\epsilon(m))$ and $f(y) < f(m)$. 
+                    Let
+                    \[
+                        | f(m) - f(y) | = \epsilon'     
+                    \]
+                    Since $f$ is continuous,  there exists a $\delta' > 0$ such that
+                    \[
+                        |x - m| < \delta' \Rightarrow |f(x) - f(m)| < \frac{\epsilon'}{2}.    
+                    \]
+                    Thus there exists an $x \in N_\epsilon(m)$ such that
+                    \[
+                        f(y) < f(x) < f(m)    
+                    \]
+                    and $f(x) \in f(N_\epsilon(m))$. Thus $f(y)$ cannot be an upper bound of $f(N_\epsilon(m))$.
+                    \end{proof}
+                \end{lemma}
+                Since $f(m)$ is the supremum of $f(N_\epsilon(m))$, if $y > f(m)$, then $y \notin f(N_\epsilon(m))$.
+                Thus, there exists an $r > 0$ such that $N_r(f(m))$ is not contained in $f(N_\epsilon(m))$. As such, 
+                $f(m)$ is not an interior point of $f(N_\epsilon(m))$. But $f(m) \in f(N_\epsilon(m))$, 
+                so not all points of $f(N_\epsilon(m))$ are interior points. Therefore, $N_\epsilon(m)$ is not open.
+
+                \item $f$ attains a local minimum value. \\
+                Then there exists some $n \in \mathbb{R}$ and $\epsilon > 0$ such that for all $x \in N_\epsilon(n)$, $f(x) \geq f(n)$.
+                Let $V = N_\epsilon(n)$. Consider $f(N_\epsilon(n))$. We know that $f(N_\epsilon(n))$ is non-empty \{$f(n) \in f(N_\epsilon(n))$\}.
+                We also know that $f(N_\epsilon(n))$ is bounded below. Thus, it has an infimum. 
+                \begin{lemma} $\inf f(N_\epsilon(n)) = f(n)$.
+                    \begin{proof}
+                    We already know that $f(n)$ is a lower bound for $f(N_\epsilon(n))$. It remains to show that 
+                    $f(n)$ is the greatest lower bound for $f(N_\epsilon(n))$. Assume for contradiction that there exists a $y \in N_\epsilon(n)$ such that $f(y)$ is also a lower bound for $f(N_\epsilon(n)$ and $f(y) > f(n)$. 
+                    Let
+                    \[
+                        | f(n) - f(y) | = \epsilon'     
+                    \]
+                    Since $f$ is continuous,  there exists a $\delta' > 0$ such that
+                    \[
+                        |x - n| < \delta' \Rightarrow |f(x) - f(n)| < \frac{\epsilon'}{2}.    
+                    \]
+                    Thus there exists an $x \in N_\epsilon(m)$ such that
+                    \[
+                        f(y) > f(x) > f(n)    
+                    \]
+                    and $f(x) \in f(N_\epsilon(n))$. Thus $f(y)$ cannot be a lower bound of $f(N_\epsilon(n))$.
+                    \end{proof}
+                \end{lemma}
+                Since $f(n)$ is the infimum of $f(N_\epsilon(n))$, if $y < f(n)$, then $y \notin f(N_\epsilon(n))$.
+                Thus, there exists an $r > 0$ such that $N_r(f(n))$ is not contained in $f(N_\epsilon(n))$. As such, 
+                $f(n)$ is not an interior point of $f(N_\epsilon(n))$. But $f(n) \in f(N_\epsilon(n))$, 
+                so not all points of $f(N_\epsilon(n))$ are interior points. Therefore, $N_\epsilon(n)$ is not open.
+            \end{itemize}
+            In all cases we see that there exists some open set $V \subseteq \mathbb{R}$ such that 
+            $f(V)$ is not open in $\mathbb{R}$. Thus, $f$ is not an open map.
+        \end{proof}
+    \end{theorem}
+    
+    \newpage
+    \item Let $X$ and $Y$ be metric spaces, and for $A \subseteq X$, suppose $f: A \to Y$ is uniformly continuous.
+    \begin{enumerate}[(a)]
+    \item (5 points) Prove: if $(x_n) \subseteq A$ is a Cauchy sequence, then $\big( f(x_n) \big) \subseteq Y$ is a Cauchy sequence.
+    \item (5 points) Give an example of a continuous function \\ $f: A \to \mathbb{R}$ with $A \subseteq \mathbb{R}$ and a Cauchy sequence $(x_n)$ for which $\big( f(x_n) \big)$ is not a Cauchy sequence.
+        \end{enumerate}
+    %-------------- Problem 3 -------------------
+    \begin{theorem}
+        Let $X$ and $Y$ be metric spaces, and for $A \subseteq X$, suppose $f: A \to Y$ is uniformly continuous. If $(x_n) \subseteq A$ is a Cauchy sequence, then $\big( f(x_n) \big) \subseteq Y$ is a Cauchy sequence.
+        \begin{proof}
+            Note: if $f: A \to Y$ is uniformly continuous, then for all $\epsilon > 0$, there exists a $\delta > 0$ dependent only on $\epsilon$ such that for $a, b\in A$:
+            \[
+                d_X(a,b) < \delta \Rightarrow d_Y(f(a), f(b)) < \epsilon    
+            \]
+            Also, if $(x_n)$ is Cauchy, then for any $\epsilon > 0$, there exists an $N \in \mathbb{N}$ such that if $m,n \geq N$, then
+            $d_X(x_n, x_m) < \epsilon$.
+            So suppose that $f: A \to Y$ is uniformly continuous and that $(x_n)$ is Cauchy. Fix $\epsilon > 0$. Then since $f$ is uniformly continuous, there must exist a $\delta > 0$ such that for $m, n \in \mathbb{N}$
+            \[
+                d_X(x_n, x_m) < \delta \Rightarrow d_Y(f(x_n), f(x_m)) < \epsilon.
+            \]
+            But $(x_n)$ is Cauchy, so we must be able to find an $N \in \mathbb{N}$ such that if $m,n > N$, then
+            \[
+                d_X(x_n, x_m) < \delta    
+            \]
+            Thus, for all $\epsilon > 0$ there exists an $N \in \mathbb{N}$ such that if $m,n > N$, then 
+            \[
+                d_Y(f(x_n), f(x_m)) < \epsilon.    
+            \]
+            Thus, $(f(x_n))$ is a Cauchy sequence.
+        \end{proof}
+    \end{theorem}
+       
+    \begin{theorem}
+        For $f: \mathbb{R^+} \to \mathbb{R}$ defined by $\displaystyle f(x) = \frac{1}{x}$ and $\displaystyle x_n = \frac{1}{n}$, $(f(x_n))$ is not Cauchy.
+        \begin{proof}
+            Since $\displaystyle x_n = \frac{1}{n}$ converges to $0$ in $\mathbb{R}$, we know that $(x_n)$ is Cauchy.
+            Consider
+            \begin{align*}
+                |f(x_n) - f(x_m)| &= \left| \frac{1}{\frac{1}{n}} - \frac{1}{\frac{1}{m}} \right| \\
+                &= |n - m|
+            \end{align*}
+            As $m,n$ are allowed to become large, $|n - m|$ is not bounded. Consider $\epsilon = 1$ and $N = 1$. If $m,n \geq N$, 
+            it is not guaranteed that $|n - m| < \epsilon$. Thus, there exists an $\epsilon > 0$ such that for all $N \in \mathbb{N}$, if
+            $m,n > N$, then $|n - m|$ is not necessarily less than $\epsilon$. Thus, $(f(x_n))$ is not Cauchy.
+        \end{proof}
+    \end{theorem}
+  
+    \newpage
+    \item Prove: if $f: [0,1] \to \mathbb{R}$ is a continuous function satisfying $f(0)=f(1)=0$, then there exists $c \in [0,1/2]$ such that $f(c) = f(c+1/2)$.
+    %-------------- Problem 4 -------------------
+    \begin{theorem}
+        If $f: [0,1] \to \mathbb{R}$ is a continuous function satisfying $f(0)=f(1)=0$, then there exists $c \in [0,1/2]$ such that $f(c) = f(c+1/2)$.
+        \begin{proof}
+            Consider the auxilary function $g: [0, 1/2] \to \mathbb{R}$ defined by
+            \[
+                g(x) = f(x) - f(x + 1/2).    
+            \]
+            We know that $g$ is continuous on $[0,1/2]$ because $f$ is continuous on $[0,1]$.
+            Consider the following values of $g$:
+            \begin{enumerate}
+                \item $g(0) = f(0) - f(1/2) = -f(1/2)$
+                \item $g(1/2) = f(1/2) - f(1) = f(1/2)$
+            \end{enumerate}
+            It appears that $g(0)$ and $g(1/2)$ have the same magnitude but opposite signs. So by the Intermediate Value Theorem,
+            we see that there must be a point $c \in [0, 1/2]$ such that $g(c) = 0$. Then by definition,
+            \begin{align*}
+                g(c) = 0 = f(c) - f(c + 1/2) \\
+                f(c) = f(c + 1/2)
+            \end{align*}
+        \end{proof}
+    \end{theorem}
+    
+    
+    \newpage
+    \item Compute the derivative of $f(x) = x^n$ where $n \in \mathbb{N}$ such that $n \geq 2$. It goes without saying that you need to use the definition of the derivative.
+    %-------------- Problem 5 -------------------
+    \begin{theorem}
+        If $f(x) = x^n$ for $n \geq 2$, then
+        \[
+            f'(x) = n\cdot x^{n -1}    
+        \]
+        \begin{proof}
+            Note: for any differentiable function $f$, $f'(x)$ is defined to be 
+            \[
+                f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}    
+            \]
+            On substituting $f(x) = x^n$, we see that
+            \begin{align*}
+                &\lim_{h \to 0} \frac{(x + h)^n - x^n}{h} \\
+                &\lim_{h \to 0} \frac{(x+h - x)\cdot((x+h)^{n-1} + (x+h)^{n-2}\cdot x + (x+h)^{n-3}\cdot x^2 + ... + x^{n -1})}{h} \\
+                &\lim_{h \to 0} \frac{(h)\cdot((x+h)^{n-1} + (x+h)^{n-2}\cdot x + (x+h)^{n-3}\cdot x^2 + ... + x^{n -1})}{h} \\
+                &\lim_{h \to 0} (x+h)^{n-1} + (x+h)^{n-2}\cdot x + (x+h)^{n-3}\cdot x^2 + ... + x^{n -1} \\
+                &(x)^{n-1} + (x)^{n-2}\cdot x + (x)^{n-3}\cdot x^2 + ... + x^{n -1} \\
+                &n\cdot x^{n-1}
+            \end{align*}
+        \end{proof}
+    \end{theorem}
+ 
+    \newpage
+    \item  Let $f: \mathbb{R} \to \mathbb{R}$ be defined in a neighborhood of some fixed $x_0$. Prove that 
+    \[ \lim_{h \to 0} \frac{f(x_0+h) - f(x_0-h)}{2h} = f'(x_0) \]
+    assuming that $f'(x_0)$ exists. Give an example of a function $f$ and a point $x_0$ such that $f'(x_0)$ does not exist but the limit above does exist.
+    %-------------- Problem 6 -------------------
+    \begin{theorem}
+        Let $f: \mathbb{R} \to \mathbb{R}$ be defined in a neighborhood of some fixed $x_0$. Then 
+    \[ \lim_{h \to 0} \frac{f(x_0+h) - f(x_0-h)}{2h} = f'(x_0) \]
+    \begin{proof}
+        We know that 
+        \[
+            \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0)}{h} = f'(x_0) =  \lim_{h \to 0} \frac{f(x_0) - f(x_0 - h)}{h}  
+        \]
+        Consider
+        \begin{align*}
+            \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0 - h)}{2h} &=  \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0) + f(x_0) - f(x_0 - h)}{2h} \\
+            &=  \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0)}{2h} + \frac{f(x_0) - f(x_0 -h)}{2h} \\
+            &= \frac{1}{2} \left\{ \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0)}{h} + \lim_{h \to 0} \frac{f(x_0) - f(x_0 -h)}{h}\right\} \\
+            &= \frac{1}{2} \left\{ f'(x_0) + f'(x_0) \right\} \\
+            &= \frac{1}{2} \cdot 2f'(x_0) \\
+            &= f'(x_0) \\
+        \end{align*}
+    \end{proof}
+    \end{theorem}
+
+    Consider the function
+    \[
+        f(x) = \frac{(x + 2)\cdot (x - 1)}{(x + 2)}    
+    \]
+    At the point $x_0 = -2$.
+    \newpage
+    \item  
+    %-------------- Problem 7 -------------------
+    \begin{proof}
+        
+    \end{proof}
+    \end{enumerate}
+    \end{document} 
